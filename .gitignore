@@ -15,6 +15,9 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Exclude old assets folder since assets are now in public folder
+assets/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
