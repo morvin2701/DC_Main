@@ -186,13 +186,13 @@ const PreviewCarouselSection: React.FC<PreviewCarouselSectionProps> = ({
   // Generate image paths for ProductScreen folder (01.jpg to 47.jpg)
   const defaultSoftwareImages = Array.from({ length: 47 }, (_, i) => {
     const num = (i + 1).toString().padStart(2, '0');
-    return `/assets/ProductScreen/${num}.jpg`;
+    return `/ProductScreen/${num}.jpg`;
   });
 
   // Generate image paths for AndImg folder (01.jpg to 05.jpg)
   const defaultMobileImages = Array.from({ length: 5 }, (_, i) => {
     const num = (i + 1).toString().padStart(2, '0');
-    return `/assets/AndImg/${num}.jpg`;
+    return `/AndImg/${num}.jpg`;
   });
 
   // Use default images if no custom images provided
