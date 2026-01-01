@@ -34,9 +34,9 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <a href="#" className="flex items-center gap-2">
-          <Logo className="w-8 h-8" />
+          <Logo className="w-14 h-14" />
           <span className="text-lg font-bold text-stone-900 tracking-tight">
-            Datacare<span className="text-blue-600">ERP</span>
+            DataCare<span className="text-blue-600">Softech</span>
           </span>
         </a>
 

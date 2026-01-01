@@ -140,19 +140,35 @@ const MobileApps: React.FC = () => {
         
         <div className="mt-20 text-center">
             <p className="text-stone-400 text-xs mb-6 uppercase tracking-[0.2em] font-bold">Download Available On</p>
-            <div className="flex justify-center gap-4">
-                <button className="flex items-center gap-4 px-8 py-4 bg-white text-stone-900 rounded-xl hover:bg-stone-50 transition-all duration-300 group border border-stone-200 shadow-sm hover:shadow-md">
-                    <Smartphone size={24} className="text-stone-400 group-hover:text-stone-900 transition-colors" />
+            <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
+                <button className="flex items-center gap-3 px-4 py-3 bg-[#4285F4] rounded-xl hover:bg-[#3367d6] transition-all duration-300 group min-w-[200px]">
+                    <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1024px-Google_Play_Store_badge_EN.svg.png" 
+                        alt="Google Play Store" 
+                        className="w-14 h-14 object-contain"
+                        onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDI0IDUxMiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQ1OC4xIDQyNy44QzQ1MSA0MzIuMSA0NDAuNiA0MzIuMSA0MzMuNSA0MjcuOGMtMzQuMi0yMC4xLTM0LjItNjMuNiAwLTgzLjdsMTg1LTEwNy44YzM0LjItMTkuOSA1NS43LTcuOSA1NS43IDM5LjN2MzA0LjRjMCA0Ny4yLTIxLjUgNTkuMi01NS43IDM5LjN6TTgwMCAyNTZMNTQ0IDQxNlY5Nkw4MDAgMjU2eiIvPjwvc3ZnPg==';
+                        }}
+                    />
                     <div className="text-left">
-                        <div className="text-[10px] uppercase tracking-wider text-stone-400">Get it on</div>
-                        <div className="font-bold text-lg leading-none">Google Play</div>
+                        <div className="text-[9px] uppercase tracking-wider text-white/80">GET IT ON</div>
+                        <div className="font-bold text-white text-base leading-none">Google Play</div>
                     </div>
                 </button>
-                <button className="flex items-center gap-4 px-8 py-4 bg-white text-stone-900 rounded-xl hover:bg-stone-50 transition-all duration-300 group border border-stone-200 shadow-sm hover:shadow-md">
-                    <Smartphone size={24} className="text-stone-400 group-hover:text-stone-900 transition-colors" />
+                <button className="flex items-center gap-3 px-4 py-3 bg-black rounded-xl hover:bg-gray-800 transition-all duration-300 group min-w-[200px]">
+                    <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/2560px-Download_on_the_App_Store_Badge.svg.png" 
+                        alt="App Store" 
+                        className="w-8 h-8 object-contain"
+                        onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDI0IDUxMiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTgwMCA0MTZMNzA0IDUxMlYzODRMMzIwIDM4NEwzMiA1MTJWMzIwTDEyOCAyMjRMMzIwIDEyOEw0MTYgMjI0TDUxMiAxMjhMNjA4IDIyNEw3MDQgMTI4TDgwMCAyMjRWNDE2ek0yMjQgMTI4TDEyOCAyMjRMMjI0IDMzNkwzMjAgMjI0TDIyNCAxMjh6Ii8+PC9zdmc+';
+                        }}
+                    />
                     <div className="text-left">
-                        <div className="text-[10px] uppercase tracking-wider text-stone-400">Download on the</div>
-                        <div className="font-bold text-lg leading-none">App Store</div>
+                        <div className="text-[9px] uppercase tracking-wider text-white/80">Download on the</div>
+                        <div className="font-bold text-white text-base leading-none">App Store</div>
                     </div>
                 </button>
             </div>
