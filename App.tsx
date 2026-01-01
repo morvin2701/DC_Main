@@ -8,7 +8,6 @@ import Journey from './components/Journey';
 import MobileApps from './components/MobileApps';
 import AiIntegration from './components/AiIntegration';
 import TeamSection from './components/TeamSection';
-import BookingWizard from './components/BookingWizard';
 import AIChat from './components/AIChat';
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
@@ -33,7 +32,6 @@ function App() {
       <AiIntegration />
       <PreviewCarouselSection />
       <TeamSection />
-      <BookingWizard />
       <ContactPage />
       <Footer />
       <AIChat />
