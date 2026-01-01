@@ -23,12 +23,7 @@ export default defineConfig(({ mode }) => {
         outDir: 'dist',
         assetsDir: 'assets',
         sourcemap: false, // Set to true if you want source maps
-        minify: 'terser',
-        terserOptions: {
-          compress: {
-            drop_console: true, // Remove console logs in production
-          },
-        },
+        minify: true,
         rollupOptions: {
           output: {
             manualChunks: {
