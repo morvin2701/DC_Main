@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion as m } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, User, Phone as PhoneIcon, AtSign, MessageSquare, Building2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, User, Phone as PhoneIcon, AtSign, MessageSquare, Building2, Loader2 } from 'lucide-react';
+import { submitContactForm } from '../services/formService';
 
 // Fix: Cast motion to any to resolve TypeScript errors with MotionProps
 const motion = m as any;
@@ -14,23 +15,40 @@ const ContactPage: React.FC = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send the form data to your backend
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({
-      name: '',
-      phone: '',
-      email: '',
-      interestedIn: 'erp',
-      message: ''
-    });
+    setIsSubmitting(true);
+    setSubmitMessage(null);
+    
+    try {
+      const result = await submitContactForm(formData);
+      
+      if (result.success) {
+        setSubmitMessage({ type: 'success', text: 'Thank you for your message! We will get back to you soon.' });
+        // Reset form only after successful submission
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          interestedIn: 'erp',
+          message: ''
+        });
+      } else {
+        setSubmitMessage({ type: 'error', text: result.message || 'Failed to submit form. Please try again.' });
+      }
+    } catch (error) {
+      setSubmitMessage({ type: 'error', text: 'An unexpected error occurred. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -171,11 +189,27 @@ const ContactPage: React.FC = () => {
               
               <button 
                 type="submit" 
-                className="w-full py-4 bg-gradient-to-r from-champagne-500 to-amber-600 hover:from-champagne-600 hover:to-amber-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl border border-champagne-200 flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full py-4 bg-gradient-to-r from-champagne-500 to-amber-600 hover:from-champagne-600 hover:to-amber-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl border border-champagne-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <Send className="w-5 h-5" />
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Send Message
+                  </>
+                )}
               </button>
+              
+              {submitMessage && (
+                <div className={`mt-4 p-4 rounded-xl text-center ${submitMessage.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                  {submitMessage.text}
+                </div>
+              )}
             </form>
           </motion.div>
 

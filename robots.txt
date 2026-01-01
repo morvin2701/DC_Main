@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+Disallow: /package-lock.json
+Disallow: /tsconfig.json
+Disallow: /vite.config.ts
+
+# Sitemap
+Sitemap: https://www.datacaresoftware.com/sitemap.xml
+
+# Crawl-delay: 10
+# This delays crawling by 10 seconds between requests to be respectful to your server
+
+# Host directive (optional)
+Host: www.datacaresoftware.com

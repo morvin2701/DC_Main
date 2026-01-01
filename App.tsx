@@ -32,6 +32,10 @@ function App() {
       <AiIntegration />
       <PreviewCarouselSection />
       <TeamSection />
+      <div id="demo" className="py-20 px-4 bg-gradient-to-b from-stone-50/50 to-white/50">
+        <div className="max-w-6xl mx-auto">
+        </div>
+      </div>
       <ContactPage />
       <Footer />
       <AIChat />

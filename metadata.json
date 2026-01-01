@@ -1,5 +1,15 @@
 {
-  "name": "Datacare Softech - Premium Jewellery ERP",
-  "description": "A high-end single-page application for Datacare Softech, showcasing Jewellery Accounting and ERP solutions with AI integration.",
-  "requestFramePermissions": []
+  "name": "Premium Jewellery ERP Software | Datacare Softech - Gold & Diamond Management Solution",
+  "description": "Datacare Softech provides premium jewellery ERP software solutions for gold, diamond, and jewellery businesses. Streamline inventory, sales, and operations with our advanced ERP system. AI-powered insights and mobile apps included.",
+  "keywords": "jewellery erp, gold erp software, diamond management software, jewellery inventory management, jewellery pos system, gold business software, diamond erp, jewellery management system, premium erp solution",
+  "author": "Datacare Softech",
+  "requestFramePermissions": [],
+  "themeColor": "#0F172A",
+  "ogTitle": "Premium Jewellery ERP Software | Datacare Softech",
+  "ogDescription": "Advanced jewellery ERP software for gold & diamond businesses. Streamline inventory, sales, and operations with our premium solution.",
+  "ogType": "website",
+  "ogUrl": "https://www.datacaresoftware.com/",
+  "twitterCard": "summary_large_image",
+  "twitterTitle": "Premium Jewellery ERP Software | Datacare Softech",
+  "twitterDescription": "Advanced jewellery ERP software for gold & diamond businesses. Streamline inventory, sales, and operations with our premium solution."
 }

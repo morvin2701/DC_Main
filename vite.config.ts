@@ -18,6 +18,30 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      build: {
+        outDir: 'dist',
+        assetsDir: 'assets',
+        sourcemap: false, // Set to true if you want source maps
+        minify: 'terser',
+        terserOptions: {
+          compress: {
+            drop_console: true, // Remove console logs in production
+          },
+        },
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              'vendor-react': ['react', 'react-dom'],
+              'vendor-framer': ['framer-motion'],
+              'vendor-lucide': ['lucide-react'],
+            }
+          }
+        }
+      },
+      // SEO and performance optimizations
+      optimizeDeps: {
+        include: ['react', 'react-dom'],
       }
     };
 });
