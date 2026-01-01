@@ -24,7 +24,7 @@ function App() {
       <Hero />
       <WhyChooseUs />
       <div id="hardware">
-        <Hardware />
+        <Hardware  />
       </div>
       <ModularAddOns />
       <Products />
