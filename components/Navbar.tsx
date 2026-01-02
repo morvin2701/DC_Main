@@ -28,13 +28,13 @@ const Navbar: React.FC = () => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 overflow-hidden ${
         isScrolled 
-          ? 'py-3 shadow-2xl border-b border-stone-300/50 shadow-stone-900/10' 
-          : 'py-5 border-b border-stone-300/0' // Made transparent initially for cleaner look
+          ? 'py-3 shadow-2xl border-b border-stone-300 shadow-stone-900/10' 
+          : 'py-5 border-b border-stone-300'
       }`}
     >
     {/* Dynamic Background */}
-    <div className={`absolute inset-0 transition-opacity duration-700 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute inset-0 bg-white/90 backdrop-blur-md"></div>
+    <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-white backdrop-blur-md shadow-sm"></div>
         <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-corporate-blue/70 to-transparent"></div>
     </div>
 
@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-xl border-b border-stone-200 overflow-hidden relative z-10"
+            className="md:hidden bg-white backdrop-blur-xl border-b border-stone-200 overflow-hidden relative z-10"
           >
             <div className="px-6 py-8 flex flex-col gap-6">
               {navLinks.map((link) => (
