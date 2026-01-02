@@ -53,19 +53,19 @@ const PreviewCarousel: React.FC<PreviewCarouselProps> = ({ type, images, onClose
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0 }}
-        className="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
+        className="bg-white rounded-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between p-6 border-b border-stone-200">
+        <div className="flex items-center justify-between p-6 border-b border-stone-200/50">
           <div className="flex items-center gap-3">
             {icon}
-            <h2 className="text-2xl font-bold text-stone-900">{title}</h2>
+            <h2 className="text-2xl font-montserrat font-bold text-stone-900">{title}</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-stone-100 rounded-full transition-colors"
+            className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl"
           >
-            <X className="w-6 h-6 text-stone-600" />
+            <X className="w-6 h-6 text-white" />
           </button>
         </div>
 
@@ -75,7 +75,7 @@ const PreviewCarousel: React.FC<PreviewCarouselProps> = ({ type, images, onClose
               key={currentIndex}
               src={images[currentIndex]}
               alt={`${title} ${currentIndex + 1}`}
-              className="w-full h-96 object-contain p-8"
+              className="w-full h-[70vh] object-contain p-8 max-h-[70vh]"
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
@@ -85,15 +85,15 @@ const PreviewCarousel: React.FC<PreviewCarouselProps> = ({ type, images, onClose
 
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-white bg-opacity-80 rounded-full shadow-lg hover:bg-opacity-100 transition-all"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 text-white"
           >
-            <ChevronLeft className="w-6 h-6 text-stone-700" />
+            <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 bg-white bg-opacity-80 rounded-full shadow-lg hover:bg-opacity-100 transition-all"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 text-white"
           >
-            <ChevronRight className="w-6 h-6 text-stone-700" />
+            <ChevronRight className="w-6 h-6" />
           </button>
         </div>
 
@@ -104,12 +104,12 @@ const PreviewCarousel: React.FC<PreviewCarouselProps> = ({ type, images, onClose
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentIndex ? 'bg-amber-500 w-6' : 'bg-stone-300'
+                  index === currentIndex ? 'bg-gradient-to-r from-blue-500 to-cyan-500 w-6' : 'bg-stone-300'
                 }`}
               />
             ))}
           </div>
-          <div className="mt-4 text-center text-stone-600">
+          <div className="mt-4 text-center text-stone-600 font-montserrat">
             {currentIndex + 1} of {images.length}
           </div>
         </div>
@@ -138,26 +138,33 @@ const PreviewBox: React.FC<PreviewBoxProps> = ({ type, images, title, descriptio
       <motion.div
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.98 }}
-        className={`relative bg-gradient-to-br ${gradient} rounded-2xl p-8 text-white cursor-pointer overflow-hidden`}
+        className={`relative bg-gradient-to-br from-white/70 via-blue-50/60 to-sky-50/50 backdrop-blur-sm rounded-2xl p-6 text-stone-900 cursor-pointer overflow-hidden border border-blue-200/40 shadow-xl hover:shadow-2xl/50 transition-all duration-500 hover:-translate-y-2 h-full flex flex-col`}
         onClick={() => setShowCarousel(true)}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-        <div className="relative z-10">
-          <div className="mb-4">{icon}</div>
-          <h3 className="text-2xl font-bold mb-2">{title}</h3>
-          <p className="text-white/90 mb-6">{description}</p>
-          <div className="flex justify-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 via-sky-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="relative z-10 flex flex-col h-full">
+          <div className="flex items-center gap-3 mb-3">
+            <div className={`p-3 rounded-xl bg-gradient-to-r ${gradient} text-white`}>
+              {icon}
+            </div>
+            <h3 className="text-xl font-montserrat font-bold">{title}</h3>
+          </div>
+          <p className="text-stone-500 mb-3 text-xs">{description}</p>
+          <div className="flex justify-center mb-3 flex-grow">
             {images.length > 0 && (
               <img
                 src={images[0]}
                 alt={title}
-                className="w-32 h-20 object-cover rounded-lg border-2 border-white/30 shadow-lg"
+                className="w-full max-w-[300px] max-h-64 object-contain rounded-xl border-2 border-blue-200/50 shadow-lg group-hover:shadow-2xl transition-shadow duration-300"
               />
             )}
           </div>
-        </div>
-        <div className="absolute bottom-4 right-4 text-sm opacity-75">
-          Click to view {type} preview
+          <div className="flex justify-center mt-auto pt-4 border-t border-stone-200/50">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 via-sky-500/10 to-cyan-500/10 rounded-full border border-blue-500/30">
+              <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+              <span className="text-blue-600 font-bold text-sm font-montserrat">Click to preview the software</span>
+            </div>
+          </div>
         </div>
       </motion.div>
 
@@ -200,16 +207,26 @@ const PreviewCarouselSection: React.FC<PreviewCarouselSectionProps> = ({
   const finalMobileImages = mobileImages.length > 0 ? mobileImages : defaultMobileImages;
 
   return (
-    <section className="py-24 bg-gradient-to-b from-stone-50 to-white">
+    <section className="py-24 bg-gradient-to-br from-blue-50 via-sky-50/30 to-blue-50 relative overflow-hidden">
+      {/* Premium background pattern */}
+      <div className="absolute inset-0 opacity-20" style={{ 
+        backgroundImage: "radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 20%)" 
+      }}></div>
+      
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-gradient-to-r from-sky-500/10 to-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="mb-4">
             <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-amber-500 mx-auto rounded-full"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6">
-            Preview <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-amber-500">Our Solutions</span>
+          <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-stone-900 mb-6">
+            Preview <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-amber-500 font-extrabold">Our Solutions</span>
           </h2>
-          <p className="text-xl text-stone-600 max-w-3xl mx-auto">
+          <p className="text-xl text-stone-600 max-w-3xl mx-auto font-montserrat">
             Explore our premium software and mobile applications with interactive previews
           </p>
         </div>
