@@ -1,146 +1,114 @@
-import React, { useRef } from 'react';
-import { motion as m, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, ArrowRight, Play, Server, ShieldCheck } from 'lucide-react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Environment, ContactShadows, Octahedron } from '@react-three/drei';
-import BackgroundParticles from './BackgroundParticles';
-import JewelShowcase from './JewelShowcase';
 
+import React, { useRef, useState } from 'react';
+import { motion as m, useScroll, useTransform, Variants } from 'framer-motion';
+
+// Fix: Cast motion to any to resolve TypeScript errors with MotionProps
 const motion = m as any;
-
-const Jewel = () => {
-  const meshRef = useRef<any>(null);
-  
-  useFrame((state, delta) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.4;
-      meshRef.current.rotation.x += delta * 0.1;
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1} floatingRange={[-0.2, 0.2]}>
-      <Octahedron ref={meshRef} position={[0, 0, 0]} scale={1.8} args={[1, 0]}>
-        {/* @ts-ignore */}
-        <meshPhysicalMaterial 
-          color="#D97706" 
-          metalness={0.9}
-          roughness={0.1}
-          clearcoat={1}
-          clearcoatRoughness={0.1}
-          reflectivity={1}
-        />
-      </Octahedron>
-    </Float>
-  );
-};
+import { ChevronDown, ArrowRight, Gem, Hexagon, Circle, Triangle, Square } from 'lucide-react';
+import Scene3D from './Premium3DIntro';
 
 const Hero: React.FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
+  const [introFinished, setIntroFinished] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end start"],
   });
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
 
   return (
-    <section ref={targetRef} className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-slate-50 pt-24 border-b border-stone-200">
-      {/* 3D Background Particles */}
-      <BackgroundParticles />
+    <section ref={targetRef} className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden bg-gradient-to-br from-stone-50 via-stone-100/50 to-stone-50 border-b border-stone-200 selection:bg-blue-500/20 selection:text-blue-900 pt-24">
       
-      {/* Technical Background */}
-      <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-stone-100 z-10" />
+      {/* 3D Scene Background */}
+      <div className="absolute inset-0 z-0">
+        <Scene3D onIntroComplete={() => setIntroFinished(true)} />
+      </div>
+      
+      {/* Subtle Static Gradient Overlays */}
+      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-stone-50 via-stone-50/50 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-stone-50 via-stone-50/50 to-transparent z-10 pointer-events-none"></div>
+
+      {/* Main Content Container - Premium Responsive Layout */}
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 h-full flex flex-col lg:flex-row items-center pt-24 lg:pt-0 min-h-screen">
         
-        {/* Animated Grid Lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" strokeWidth="1" />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </motion.div>
-
-      <div className="relative z-20 container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-        <div className="text-left space-y-8">
+        {/* Left Column: Text Content */}
+        {/* Mobile: pt-[35vh] pushes text down to reveal 3D element at top */}
+        {/* Desktop: lg:pt-0 and lg:w-1/2 aligns text to left side vertically centered */}
+        <div className="w-full lg:w-1/2 flex flex-col items-start justify-center pt-12 sm:pt-16 md:pt-20 pb-12 lg:pb-0 lg:pt-0 lg:pr-8 xl:pr-12">
+          {/* Badge - Always visible */}
+          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 border border-stone-200 rounded-full bg-white/50 backdrop-blur-sm text-stone-600 text-[11px] font-bold uppercase tracking-wider mb-8 shadow-sm">
+             <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+             </span>
+             The Gold Standard in ERP
+          </div>
+          
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            variants={containerVariants}
+            initial="hidden"
+            animate={introFinished ? "show" : "hidden"}
+            className="flex flex-col items-start w-full max-w-xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-stone-300 rounded-full bg-white text-stone-600 text-xs font-bold uppercase tracking-widest mb-8 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-              India's Leading Software Solution Provider
-            </div>
             
-            <h1 className="font-sans text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-stone-900 tracking-tight">
-              Enterprise ERP for the <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-500">Modern Jeweller</span>
-            </h1>
+            {/* Heading */}
+            <motion.h1 variants={itemVariants} className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-stone-900 tracking-tighter">
+              Transform Your <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-stone-800">
+                Jewelry Business.
+              </span>
+            </motion.h1>
             
-            <p className="text-lg text-stone-600 max-w-xl font-medium leading-relaxed mb-10 border-l-4 border-blue-600 pl-6">
-              Streamline multi-store operations, automate inventory tracking, and ensure 100% compliance with Datacare's industry-leading software infrastructure.
-            </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#demo" className="px-8 py-4 bg-stone-900 text-white hover:bg-blue-700 font-bold text-sm rounded-md transition-all shadow-lg flex items-center justify-center gap-2">
-                Schedule Demo <ArrowRight size={16} />
-              </a>
-              <a href="#features" className="px-8 py-4 bg-white border border-stone-300 text-stone-700 hover:border-blue-500 hover:text-blue-600 font-bold text-sm rounded-md transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2">
-                <Server size={16} /> View Integrations
-              </a>
-            </div>
-
-            <div className="mt-12 flex items-center gap-8 text-stone-500 text-sm font-semibold">
-              <div className="flex items-center gap-2">
-                <ShieldCheck size={18} className="text-green-600" /> SOC 2 Compliant
-              </div>
-              <div className="flex items-center gap-2">
-                <Server size={18} className="text-blue-600" /> 99.99% Uptime
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* 3D Model & Dashboard Container */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="hidden lg:block relative h-[500px]"
-        >
-          {/* Premium 3D Jewellery Showcase */}
-          <div className="absolute -top-20 -right-10 w-80 h-80 z-20 pointer-events-none">
-            <JewelShowcase />
-          </div>
-
-          <div className="relative rounded-lg shadow-2xl border border-stone-200 bg-white overflow-hidden transform rotate-[-1deg] hover:rotate-0 transition-transform duration-500 z-10 mt-16">
-             {/* Fake Browser Header */}
-             <div className="bg-stone-100 border-b border-stone-200 p-3 flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                <div className="ml-4 bg-white px-3 py-1 rounded text-[10px] text-stone-400 font-mono w-64">DataCare Softech - Dashboard Preview</div>
-             </div>
-             <img 
-                src="assets/Next.jpg" 
-                alt="Datacare ERP Dashboard"
-                className="w-full h-auto opacity-95"
-             />
-             
-          </div>
+            <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-stone-600 max-w-lg font-light leading-relaxed mb-8 sm:mb-10 tracking-tight">
+              Experience seamless operations, real-time insights, and industry-leading security for your precious metals and gems.
+            </motion.p>
+            
+            {/* Buttons */}
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <button className="group px-8 py-4 bg-stone-900 text-white font-semibold text-sm rounded-full transition-all hover:bg-stone-800 hover:-translate-y-0.5 shadow-lg hover:shadow-xl">
+                <span className="flex items-center justify-center gap-2">
+                  Request Access <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </span>
+              </button>
+              
+              <button className="px-8 py-4 bg-white/40 backdrop-blur-md border border-stone-300 text-stone-700 font-semibold text-sm rounded-full transition-all hover:bg-white hover:border-stone-400 flex items-center justify-center gap-2">
+                 <Gem size={16} className="text-stone-400" />
+                 Explore Features
+              </button>
+            </motion.div>
         </motion.div>
       </div>
 
+        {/* Right Column: Spacer for 3D View (Desktop) */}
+        {/* The Scene3D component automatically positions the gem here on desktop */}
+        <div className="hidden lg:block lg:w-1/2 h-full pointer-events-none"></div>
+      </div>
+
       <motion.div 
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-stone-400 cursor-pointer"
-        animate={{ y: [0, 5, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-stone-400/50"
+        animate={introFinished ? { opacity: 1, y: [0, 8, 0] } : { opacity: 0 }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
-        <ChevronDown size={24} />
+        <ChevronDown size={24} strokeWidth={1.5} />
       </motion.div>
     </section>
   );

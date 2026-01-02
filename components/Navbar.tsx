@@ -26,23 +26,26 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 font-serif overflow-hidden ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 overflow-hidden ${
         isScrolled 
           ? 'py-3 shadow-2xl border-b border-stone-300/50 shadow-stone-900/10' 
-          : 'py-5 border-b border-stone-300/40'
+          : 'py-5 border-b border-stone-300/0' // Made transparent initially for cleaner look
       }`}
     >
-    <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-stone-50/80 backdrop-blur-2xl"></div>
-    <div className="absolute inset-0 bg-white"></div>
-    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-corporate-blue/70 to-transparent animate-pulse"></div>
+    {/* Dynamic Background */}
+    <div className={`absolute inset-0 transition-opacity duration-700 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="absolute inset-0 bg-white/90 backdrop-blur-md"></div>
+        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-corporate-blue/70 to-transparent"></div>
+    </div>
+
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16 relative z-10">
-        <a href="#" className="flex items-center gap-2 group">
-          <Logo className="w-12 h-12 transition-transform duration-300 group-hover:scale-105" />
+        <a href="#" className="flex items-center gap-3 group">
+          <Logo className="w-14 h-14 transition-transform duration-300 group-hover:scale-105 drop-shadow-md" />
           <div>
-            <span className="text-xl font-bold text-stone-900 tracking-tight font-montserrat font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-corporate-blue group-hover:to-corporate-light transition-all duration-500">
-              DataCare<span className="text-transparent bg-clip-text bg-gradient-to-r from-corporate-blue to-corporate-light font-bold">Softech</span>
+            <span className="text-xl font-bold text-stone-900 tracking-tight font-montserrat group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-corporate-blue group-hover:to-corporate-light transition-all duration-500">
+              DataCare<span className="text-corporate-blue font-extrabold">Softech</span>
             </span>
-            <div className="text-[0.6rem] text-stone-500/80 font-bold tracking-[0.2em] uppercase pl-0.5 mt-0.5 group-hover:text-corporate-blue transition-colors duration-500 font-montserrat italic">Premium ERP Solutions</div>
+            <div className="text-[0.6rem] text-stone-500/80 font-bold tracking-[0.2em] uppercase pl-0.5 -mt-0.5 group-hover:text-corporate-blue transition-colors duration-500 font-montserrat">Premium ERP Solutions</div>
           </div>
         </a>
 
@@ -52,23 +55,18 @@ const Navbar: React.FC = () => {
             <div key={link.name} className="relative group">
               <a 
                 href={link.href}
-                className="text-base font-bold text-stone-700 group-hover:text-corporate-blue transition-all duration-500 relative pb-1.5 font-montserrat"
+                className="text-sm font-bold text-stone-600 group-hover:text-corporate-blue transition-all duration-500 relative pb-1 font-montserrat uppercase tracking-wide"
               >
-                <span className="absolute -bottom-1 left-0 w-full h-px bg-stone-300/60"></span>
-                <span className="block relative z-10 font-bold">{link.name}</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-corporate-blue to-corporate-light transition-all duration-500 group-hover:w-full"></span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-corporate-accent/30 to-transparent transition-all duration-700 group-hover:w-full delay-150"></span>
+                <span className="block relative z-10">{link.name}</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-corporate-blue transition-all duration-300 group-hover:w-full"></span>
               </a>
             </div>
           ))}
           <a 
             href="#demo"
-            className="px-5 py-2.5 bg-gradient-to-r from-corporate-blue to-corporate-light hover:from-corporate-light hover:to-corporate-blue text-white font-bold rounded-lg text-base transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 border border-corporate-accent/40 relative overflow-hidden group font-times"
+            className="px-6 py-2.5 bg-stone-900 hover:bg-corporate-blue text-white font-bold rounded-full text-sm transition-all duration-300 shadow-lg hover:shadow-corporate-blue/30 transform hover:-translate-y-0.5 font-sans"
           >
-            <span className="relative z-10 font-bold">Request Demo</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-corporate-accent/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-corporate-accent/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="absolute inset-0 rounded-lg border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            Request Demo
           </a>
         </div>
 
@@ -77,10 +75,7 @@ const Navbar: React.FC = () => {
           className="md:hidden text-stone-800 p-2 rounded-full hover:bg-stone-100 transition-colors duration-300 relative"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={20} className="transition-transform duration-300" /> : <Menu size={20} className="transition-transform duration-300" />}
-          {isMobileMenuOpen && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-corporate-blue/10 rounded-full animate-ping"></div>
-          )}
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -91,30 +86,25 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-stone-300/50 overflow-hidden shadow-2xl relative z-10"
+            className="md:hidden bg-white/95 backdrop-blur-xl border-b border-stone-200 overflow-hidden relative z-10"
           >
-            <div className="px-6 py-6 flex flex-col gap-5">
+            <div className="px-6 py-8 flex flex-col gap-6">
               {navLinks.map((link) => (
-                <div key={link.name} className="relative group">
-                  <a 
-                    href={link.href}
-                    className="text-lg font-bold text-stone-800 group-hover:text-corporate-blue py-3 relative border-b border-stone-200/70 transition-all duration-500 font-times"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="relative z-10 font-bold">{link.name}</span>
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-corporate-blue to-corporate-light transition-all duration-500 group-hover:w-full"></span>
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-corporate-accent/30 to-transparent transition-all duration-700 group-hover:w-full delay-150"></span>
-                  </a>
-                </div>
+                <a 
+                  key={link.name}
+                  href={link.href}
+                  className="text-lg font-bold text-stone-800 hover:text-corporate-blue transition-colors font-montserrat"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
               ))}
               <a 
                 href="#demo" 
-                className="text-center py-3.5 bg-gradient-to-r from-corporate-blue to-corporate-light text-white rounded-lg font-bold text-lg mt-2 shadow-xl hover:shadow-2xl transition-all duration-500 relative overflow-hidden group font-times"
+                className="text-center py-4 bg-corporate-blue text-white rounded-lg font-bold text-lg mt-4 shadow-xl"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className="relative z-10 font-bold">Request Demo</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-corporate-accent/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-corporate-accent/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute inset-0 rounded-lg border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                Request Demo
               </a>
             </div>
           </motion.div>
