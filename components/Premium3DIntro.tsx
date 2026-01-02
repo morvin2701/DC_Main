@@ -1,7 +1,7 @@
 // @ts-nocheck
-import React, { useRef, useState, useEffect, Suspense } from 'react';
+import React, { useRef, useState, useEffect, Suspense, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Float, Environment, PerspectiveCamera, ContactShadows, MeshReflectorMaterial, RoundedBox, Html, useProgress, PresentationControls, useTexture } from '@react-three/drei';
+import { Float, Environment, PerspectiveCamera, ContactShadows, RoundedBox, Html, useProgress, PresentationControls, useTexture, Octahedron } from '@react-three/drei';
 import * as THREE from 'three';
 import IntroParticles from './IntroParticles';
 
@@ -16,13 +16,13 @@ const Loader = () => {
   return (
     <Html center>
       <div className="flex flex-col items-center justify-center w-64 p-4 bg-white/80 backdrop-blur-md rounded-xl shadow-2xl border border-white/50">
-        <div className="w-full h-1 bg-stone-200 rounded-full overflow-hidden mb-3">
+        <div className="w-full h-1 bg-slate-200 rounded-full overflow-hidden mb-3">
           <div 
             className="h-full bg-corporate-blue transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <span className="text-[10px] font-extrabold text-stone-500 uppercase tracking-[0.2em]">
+        <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-[0.2em]">
           Loading Experience {progress.toFixed(0)}%
         </span>
       </div>
@@ -33,6 +33,50 @@ const Loader = () => {
 interface Scene3DProps {
   onIntroComplete?: () => void;
 }
+
+// -- Background Animation Elements --
+const FloatingFloatingShapes = () => {
+  const count = 5;
+  const shapes = useMemo(() => {
+    return new Array(count).fill(0).map(() => ({
+      position: [
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 5 - 5 // Push back
+      ],
+      scale: 0.5 + Math.random() * 1.5,
+      rotation: [Math.random() * Math.PI, Math.random() * Math.PI, 0],
+      speed: 0.2 + Math.random() * 0.5
+    }));
+  }, []);
+
+  return (
+    <group>
+      {shapes.map((shape, i) => (
+        <Float 
+            key={i} 
+            speed={shape.speed} 
+            rotationIntensity={1} 
+            floatIntensity={2} 
+            position={shape.position as [number, number, number]}
+        >
+          <Octahedron args={[1, 0]} scale={shape.scale}>
+            <meshPhysicalMaterial 
+              color="#f1f5f9" // Very subtle slate
+              roughness={0}
+              metalness={0.1}
+              transmission={0.9}
+              transparent
+              opacity={0.5}
+              thickness={2}
+            />
+          </Octahedron>
+        </Float>
+      ))}
+    </group>
+  );
+};
+
 
 // -- Realistic Device Models --
 
@@ -162,10 +206,24 @@ const DeviceCluster = ({ introPhase }: { introPhase: string }) => {
   const phoneRef = useRef<THREE.Group>(null);
   
   useFrame((state, delta) => {
-    // Idle Animation
+    
+    // Rotation Correction Logic:
+    // When the group moves to the right (desktop view), it needs to rotate LEFT (negative Y) 
+    // to face the camera straight on.
+    // Base rotation of -0.3 radians keeps it looking "Straight" at the user.
     if (groupRef.current) {
-       groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.4) * 0.08;
-       groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.15) * 0.04;
+        const baseRotation = -0.35; // Angle devices towards camera
+        const idleRotation = Math.sin(state.clock.elapsedTime * 0.2) * 0.05;
+        
+        // Smoothly interpolate rotation
+        groupRef.current.rotation.y = THREE.MathUtils.lerp(
+            groupRef.current.rotation.y, 
+            baseRotation + idleRotation, 
+            delta * 2
+        );
+
+        // Idle floating
+        groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.4) * 0.08;
     }
 
     // Entrance Animation Logic
@@ -180,15 +238,17 @@ const DeviceCluster = ({ introPhase }: { introPhase: string }) => {
         laptopRef.current.position.y = THREE.MathUtils.lerp(laptopRef.current.position.y, targetY, lerpSpeed);
     }
 
-    // Tablet: X -5 -> -2.5 (Adjusted position)
+    // Tablet: 
+    // Adjusted Spacing: -2.35 is the sweet spot. Close to laptop (1.6 edge) but no overlap.
     if (tabletRef.current) {
-        const targetX = isIntro ? -5 : -2.5; 
+        const targetX = isIntro ? -5 : -2.35; 
         tabletRef.current.position.x = THREE.MathUtils.lerp(tabletRef.current.position.x, targetX, lerpSpeed);
     }
 
-    // Phone: X 5 -> 1.5 (Adjusted position)
+    // Phone:
+    // Adjusted Spacing: 1.6 keeps it balanced on the right.
     if (phoneRef.current) {
-        const targetX = isIntro ? 5 : 1.5;
+        const targetX = isIntro ? 5 : 1.6;
         phoneRef.current.position.x = THREE.MathUtils.lerp(phoneRef.current.position.x, targetX, lerpSpeed);
     }
   });
@@ -203,7 +263,7 @@ const DeviceCluster = ({ introPhase }: { introPhase: string }) => {
           zoom={1}
           rotation={[0, 0, 0]}
           polar={[-0.1, 0.1]} 
-          azimuth={[-0.15, 0.15]} 
+          azimuth={[-0.1, 0.1]} // Restricted azimuth to keep "straight" look preserved
         >
             <group>
                 {/* Laptop - Central Anchor */}
@@ -211,13 +271,13 @@ const DeviceCluster = ({ introPhase }: { introPhase: string }) => {
                   <LaptopModel />
                 </group>
 
-                {/* Tablet - Left - Tilted slightly more to fit efficiently */}
-                <group ref={tabletRef} position={[-2.5, 0, 0.7]} rotation={[0, 0.3, 0]}>
+                {/* Tablet - Left - Tilted slightly */}
+                <group ref={tabletRef} position={[-5, 0, 0.7]} rotation={[0, 0.3, 0]}>
                     <TabletModel />
                 </group>
 
                 {/* Phone - Right */}
-                <group ref={phoneRef} position={[1.5, -0.25, 1.2]}>
+                <group ref={phoneRef} position={[5, -0.25, 1.2]}>
                     <PhoneModel />
                 </group>
             </group>
@@ -244,10 +304,10 @@ const ResponsiveClusterGroup = ({ children, introPhase }: { children: React.Reac
           targetY = viewport.height * 0.15; 
           targetScale = 0.52; 
       } else {
-          // Desktop: Center-right position
-          targetX = viewport.width * 0.25; 
-          targetY = -0.6; // Slightly lower to feel grounded
-          targetScale = 0.68; // Compact scale to avoid overwhelming the space
+          // Desktop: Right side
+          targetX = viewport.width * 0.30; 
+          targetY = -0.6; 
+          targetScale = 0.68; 
       }
 
       if (introPhase === 'active') {
@@ -319,14 +379,20 @@ const SceneContent: React.FC<Scene3DProps> = ({ onIntroComplete }) => {
 
   return (
     <>
-        <ambientLight intensity={0.7} />
-        {/* Cinematic Studio Lighting */}
-        <spotLight position={[5, 8, 5]} angle={0.5} penumbra={1} intensity={2.5} color="#ffffff" castShadow shadowBias={-0.0001} />
-        <spotLight position={[-5, 5, 2]} angle={0.5} penumbra={1} intensity={1.5} color="#dbeafe" /> 
-        <spotLight position={[0, 5, -5]} angle={0.5} penumbra={1} intensity={3} color="#fcd34d" /> 
+        {/* Pure White Fog to blend floor into infinity */}
+        <fog attach="fog" args={['#ffffff', 5, 25]} />
+
+        <ambientLight intensity={1.5} />
+        {/* Cinematic Studio Lighting - Neutral White */}
+        <spotLight position={[5, 8, 5]} angle={0.5} penumbra={1} intensity={2.0} color="#ffffff" castShadow shadowBias={-0.0001} />
+        <spotLight position={[-5, 5, 2]} angle={0.5} penumbra={1} intensity={1.5} color="#f8fafc" /> 
+        <spotLight position={[0, 5, -5]} angle={0.5} penumbra={1} intensity={1.5} color="#ffffff" /> 
         
         <Environment preset="city" blur={0.7} background={false} />
         
+        {/* Background Animation Layer */}
+        <FloatingFloatingShapes />
+
         <CameraRig mode={introPhase === 'active' ? 'intro' : 'main'} />
         
         {introPhase !== 'finished' && (
@@ -337,25 +403,8 @@ const SceneContent: React.FC<Scene3DProps> = ({ onIntroComplete }) => {
              <DeviceCluster introPhase={introPhase} />
         </ResponsiveClusterGroup>
 
-        {/* Premium Floor Reflection */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.1, 0]}>
-            <planeGeometry args={[50, 50]} />
-            <MeshReflectorMaterial
-                mirror={0.5}
-                blur={[400, 100]}
-                resolution={1024}
-                mixBlur={1}
-                mixStrength={25} 
-                roughness={0.6} 
-                depthScale={1}
-                minDepthThreshold={0.4}
-                maxDepthThreshold={1.4}
-                color="#f0f0f0"
-                metalness={0.7}
-            />
-        </mesh>
-
-        <ContactShadows position={[0, -2.95, 0]} opacity={0.6} scale={15} blur={2.2} far={4} color="#000" frames={1} />
+        {/* Shadow Only - No Physical Floor Mesh */}
+        <ContactShadows position={[0, -2.95, 0]} opacity={0.4} scale={25} blur={2.5} far={4} color="#000000" frames={1} />
     </>
   );
 }
@@ -372,7 +421,7 @@ const Premium3DIntro: React.FC<Scene3DProps> = (props) => {
         }} 
         dpr={[1, 1.5]}
         shadows
-        className="touch-none" // Prevent scroll jank on mobile when touching canvas
+        className="touch-none" 
       > 
         <Suspense fallback={<Loader />}>
             <SceneContent {...props} />
