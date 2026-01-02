@@ -1,17 +1,24 @@
 import React from 'react';
 import { motion as m } from 'framer-motion';
-import { Smartphone, CheckCircle, BookOpen, Layers, Star, Zap, MonitorSmartphone } from 'lucide-react';
+import { Smartphone, CheckCircle, BookOpen, Layers, Star, Zap, MonitorSmartphone, Gem, Settings } from 'lucide-react';
+import FeatureCard3D from './FeatureCard3D';
 
 // Fix: Cast motion to any to resolve TypeScript errors with MotionProps
 const motion = m as any;
 
 const MobileApps: React.FC = () => {
   return (
-    <section id="mobile-apps" className="py-32 bg-gradient-to-br from-stone-50 via-amber-50 to-stone-50 overflow-hidden relative">
+    <section id="mobile-apps" className="py-32 bg-gradient-to-br from-blue-50 via-sky-50/30 to-blue-50 relative overflow-hidden">
       {/* Premium Background Pattern */}
-      <div className="absolute inset-0 opacity-30" style={{ 
-        backgroundImage: "radial-gradient(circle at 10% 20%, rgba(233, 211, 168, 0.1) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(120, 111, 100, 0.1) 0%, transparent 20%)" 
+      <div className="absolute inset-0 opacity-20" style={{ 
+        backgroundImage: "radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 20%)" 
       }}></div>
+      
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-gradient-to-r from-sky-500/10 to-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-24">
           <span className="text-champagne-600 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Mobility & Innovation</span>

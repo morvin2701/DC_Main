@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-stone-300 rounded-full bg-white text-stone-600 text-xs font-bold uppercase tracking-widest mb-8 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-              India's Leading Software Solution Provider 
+              India's Leading Software Solution Provider
             </div>
             
             <h1 className="font-sans text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-stone-900 tracking-tight">

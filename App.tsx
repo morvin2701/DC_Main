@@ -21,6 +21,7 @@ function App() {
       <BackgroundParticles />
       <Navbar />
       <Hero />
+      <AiIntegration />
       <WhyChooseUs />
       <div id="hardware">
         <Hardware  />
@@ -29,7 +30,6 @@ function App() {
       <Products />
       <Journey />
       <MobileApps />
-      <AiIntegration />
       <PreviewCarouselSection />
       <TeamSection />
       <div id="demo" className="py-20 px-4 bg-gradient-to-b from-stone-50/50 to-white/50">
