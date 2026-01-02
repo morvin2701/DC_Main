@@ -5,7 +5,7 @@ interface ContactFormData {
   name: string;
   phone: string;
   email: string;
-  interestedIn: string;
+  city: string;
   message: string;
 }
 
@@ -17,12 +17,12 @@ export const submitContactForm = async (data: ContactFormData): Promise<{ succes
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
-        Name: data.name,
-        Phone: data.phone,
-        Email: data.email,
-        InterestedIn: data.interestedIn,
-        Message: data.message,
-        Timestamp: new Date().toISOString(),
+        'Name': data.name,
+        'Phone Number': data.phone,
+        'Email': data.email,
+        'City': data.city,
+        'Message': data.message,
+        'Timestamp': new Date().toISOString(),
       }),
     });
 

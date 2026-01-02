@@ -11,7 +11,7 @@ const ContactPage: React.FC = () => {
     name: '',
     phone: '',
     email: '',
-    interestedIn: 'erp',
+    city: '',
     message: ''
   });
 
@@ -38,7 +38,7 @@ const ContactPage: React.FC = () => {
           name: '',
           phone: '',
           email: '',
-          interestedIn: 'erp',
+          city: '',
           message: ''
         });
       } else {
@@ -140,35 +140,19 @@ const ContactPage: React.FC = () => {
               </div>
               
               <div>
-                <label htmlFor="interestedIn" className="block text-sm font-bold text-stone-700 mb-2">
-                  Interested in
+                <label htmlFor="city" className="block text-sm font-bold text-stone-700 mb-2 flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-champagne-500" /> City
                 </label>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="erp"
-                      name="interestedIn"
-                      value="erp"
-                      checked={formData.interestedIn === 'erp'}
-                      onChange={handleChange}
-                      className="w-4 h-4 text-champagne-600 focus:ring-champagne-500"
-                    />
-                    <label htmlFor="erp" className="ml-2 text-sm text-stone-700">ERP Application</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="ai"
-                      name="interestedIn"
-                      value="ai"
-                      checked={formData.interestedIn === 'ai'}
-                      onChange={handleChange}
-                      className="w-4 h-4 text-champagne-600 focus:ring-champagne-500"
-                    />
-                    <label htmlFor="ai" className="ml-2 text-sm text-stone-700">AI Integration</label>
-                  </div>
-                </div>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-champagne-500 focus:border-transparent transition-all"
+                  placeholder="Enter your city"
+                />
               </div>
               
               <div>
