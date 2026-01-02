@@ -59,7 +59,7 @@ const TeamSection: React.FC = () => {
     // Add remaining team members (04-09, 11, 13-16, 18-21) with updated details
     {
       id: '04',
-      name: 'Team Member 04',
+      name: 'Kunarth Soni',
       role: 'Sales & Technical Service Provider',
       isLeader: false,
       isOwner: false,
@@ -270,7 +270,7 @@ const TeamSection: React.FC = () => {
                     <div className="absolute -inset-2 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
                     <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-xl">
                       <img 
-                        src={`/team/${owner.id}.png`} 
+                        src={`/team/${owner.id}.png?${Date.now()}`} 
                         alt={owner.name}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         onError={(e) => {
@@ -343,7 +343,7 @@ const TeamSection: React.FC = () => {
                     <div className="relative mb-4">
                       <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg">
                         <img 
-                          src={`/team/${member.id}.png`} 
+                          src={`/team/${member.id}.png?${Date.now()}`} 
                           alt={member.name}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                           onError={(e) => {
@@ -414,7 +414,7 @@ const TeamSection: React.FC = () => {
                 <div className="relative mb-4">
                   <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg relative">
                     <img 
-                      src={`/team/${member.id}.png`} 
+                      src={`/team/${member.id}.png?${Date.now()}`} 
                       alt={member.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       onError={(e) => {
