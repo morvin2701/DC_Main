@@ -15,8 +15,8 @@ const MobileApps: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-24">
           <span className="text-champagne-600 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Mobility & Innovation</span>
-          <h2 className="text-4xl md:text-6xl font-serif font-bold text-stone-900 mb-6">
-            Business in Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-champagne-500 to-champagne-700">Pocket</span>
+          <h2 className="text-4xl md:text-6xl font-montserrat font-bold text-stone-900 mb-6">
+            Business in Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-champagne-500 to-champagne-700 font-extrabold">Pocket</span>
           </h2>
           <p className="text-stone-500 max-w-2xl mx-auto text-lg leading-relaxed font-light">
             Stay connected to your business 24/7. Our suite of mobile applications ensures you are always in control, whether you are on the floor or on the go.
@@ -32,11 +32,11 @@ const MobileApps: React.FC = () => {
                   transition={{ duration: 0.8 }}
                   className="order-2 md:order-1 py-4"
                 >
-                    <h3 className="text-3xl font-serif font-bold text-stone-900 mb-6 flex items-center gap-3 group">
+                    <h3 className="text-3xl font-montserrat font-bold text-stone-900 mb-6 flex items-center gap-3 group">
                         <div className="p-3 rounded-2xl bg-gradient-to-br from-champagne-100 to-amber-100 border border-champagne-200/50 group-hover:shadow-lg transition-all duration-300">
                           <MonitorSmartphone className="text-champagne-600" />
                         </div>
-                        <span className="group-hover:bg-gradient-to-r group-hover:from-champagne-500 group-hover:to-amber-500 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">Jewellery Accounting App</span>
+                        <span className="group-hover:bg-gradient-to-r group-hover:from-champagne-500 group-hover:to-amber-500 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 font-extrabold">Jewellery Accounting App</span>
                     </h3>
                     <p className="text-stone-600 mb-10 leading-relaxed text-lg">
                        Seamlessly connected to your main ERP system, our mobile application provides powerful data access and control capabilities. Real-time synchronization technology ensures that your inventory levels, sales figures, and business data remain consistently accurate across all platforms. The app enables you to access critical business performance metrics, efficiently manage financial transactions, and maintain continuous connectivity to your core business operations from any location, at any time of day or night.
@@ -257,7 +257,7 @@ const MobileApps: React.FC = () => {
                 <div className="mb-4 relative z-10">
                     <span className="px-4 py-1.5 bg-gradient-to-r from-amber-100/80 to-stone-100/80 text-stone-600 font-bold text-xs rounded-full uppercase tracking-wide border border-stone-200/70 shadow-sm">Digital Showcase</span>
                 </div>
-                <h3 className="text-2xl font-serif font-bold mb-3 text-stone-900 relative z-10 group-hover:bg-gradient-to-r group-hover:from-amber-500 group-hover:to-amber-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">E-Catalogue</h3>
+                <h3 className="text-2xl font-montserrat font-bold mb-3 text-stone-900 relative z-10 group-hover:bg-gradient-to-r group-hover:from-amber-500 group-hover:to-amber-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 font-extrabold">E-Catalogue</h3>
                 <p className="text-stone-500 mb-6 leading-relaxed flex-grow relative z-10">
                     Impress clients with a sleek, customizable digital catalogue. Replace bulky physical catalogs with high-resolution images and instant search capabilities.
                 </p>
@@ -279,7 +279,7 @@ const MobileApps: React.FC = () => {
                 <div className="mb-4 relative z-10">
                     <span className="px-4 py-1.5 bg-gradient-to-r from-champagne-500/90 to-amber-500/90 text-white font-bold text-xs rounded-full uppercase tracking-wide border border-champagne-200/50 shadow-sm">Customer Loyalty</span>
                 </div>
-                <h3 className="text-2xl font-serif font-bold mb-3 text-stone-900 relative z-10 group-hover:bg-gradient-to-r group-hover:from-stone-600 group-hover:to-stone-700 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">Gold Scheme App</h3>
+                <h3 className="text-2xl font-montserrat font-bold mb-3 text-stone-900 relative z-10 group-hover:bg-gradient-to-r group-hover:from-stone-600 group-hover:to-stone-700 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 font-extrabold">Gold Scheme App</h3>
                 <p className="text-stone-500 mb-6 leading-relaxed flex-grow relative z-10">
                     Modernize your monthly saving schemes. Customers can track payments, view maturity dates, and pay installments online, building trust and transparency.
                 </p>

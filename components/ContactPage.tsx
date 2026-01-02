@@ -67,8 +67,8 @@ const ContactPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <span className="text-champagne-600 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Get In Touch</span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-stone-900 mb-6">
-            Let's Discuss Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-champagne-500 to-amber-600">Jewellery ERP</span> Needs
+          <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-stone-900 mb-6">
+            Let's Discuss Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-champagne-500 to-amber-600 font-extrabold">Jewellery ERP</span> Needs
           </h2>
           <p className="text-stone-600 max-w-2xl mx-auto text-lg leading-relaxed">
             Reach out to us for any inquiries, support, or to schedule a demo of our premium jewellery ERP solution.
@@ -83,7 +83,7 @@ const ContactPage: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-stone-200/50"
           >
-            <h3 className="text-2xl font-serif font-bold text-stone-900 mb-8 flex items-center gap-3">
+            <h3 className="text-2xl font-montserrat font-bold text-stone-900 mb-8 flex items-center gap-3 font-extrabold">
               <Send className="text-champagne-600" />
               Send us a Message
             </h3>
@@ -206,7 +206,7 @@ const ContactPage: React.FC = () => {
           >
             {/* Email Us */}
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-stone-200/50">
-              <h3 className="text-2xl font-serif font-bold text-stone-900 mb-6 flex items-center gap-3">
+              <h3 className="text-2xl font-montserrat font-bold text-stone-900 mb-6 flex items-center gap-3 font-extrabold">
                 <Mail className="text-champagne-600" />
                 Email Us
               </h3>
@@ -225,7 +225,7 @@ const ContactPage: React.FC = () => {
 
             {/* Our Branches */}
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-stone-200/50">
-              <h3 className="text-2xl font-serif font-bold text-stone-900 mb-6 flex items-center gap-3">
+              <h3 className="text-2xl font-montserrat font-bold text-stone-900 mb-6 flex items-center gap-3 font-extrabold">
                 <Building2 className="text-champagne-600" />
                 Our Branches
               </h3>
@@ -260,7 +260,7 @@ const ContactPage: React.FC = () => {
 
             {/* Working Hours */}
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-stone-200/50">
-              <h3 className="text-2xl font-serif font-bold text-stone-900 mb-6 flex items-center gap-3">
+              <h3 className="text-2xl font-montserrat font-bold text-stone-900 mb-6 flex items-center gap-3 font-extrabold">
                 <Phone className="text-champagne-600" />
                 Working Hours
               </h3>

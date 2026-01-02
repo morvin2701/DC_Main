@@ -25,7 +25,7 @@ const BenefitCard = ({ title, desc, icon: Icon, delay, index }: { title: string,
       <div className="w-14 h-14 bg-gradient-to-br from-blue-500 via-sky-600 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
         <Icon className="text-white" size={28} />
       </div>
-      <h3 className="text-xl font-serif font-bold text-stone-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">{title}</h3>
+      <h3 className="text-xl font-montserrat font-bold text-stone-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">{title}</h3>
       <p className="text-stone-600 leading-relaxed">{desc}</p>
       
       {/* Hover effect line */}
@@ -86,7 +86,7 @@ const WhyChooseUs: React.FC = () => {
           {/* Premium badge */}
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500/10 via-sky-500/10 to-cyan-500/10 rounded-full border border-blue-500/30 mb-6">
             <Star className="text-blue-500" size={16} />
-            <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent font-bold text-sm uppercase tracking-wider">Trusted by Leaders</span>
+            <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent font-bold text-sm uppercase tracking-wider font-montserrat">Trusted by Leaders</span>
           </div>
           
           <motion.h2 
@@ -94,9 +94,9 @@ const WhyChooseUs: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-serif font-bold text-stone-900 mb-6 relative"
+            className="text-4xl md:text-5xl font-montserrat font-bold text-stone-900 mb-6 relative"
           >
-            Why Leading <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-600 to-cyan-500">Enterprises</span> Choose Datacare
+            Why Leading <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-600 to-cyan-500 font-extrabold">Enterprises</span> Choose Datacare
           </motion.h2>
           
           <motion.p 

@@ -39,10 +39,10 @@ const Navbar: React.FC = () => {
         <a href="#" className="flex items-center gap-2 group">
           <Logo className="w-12 h-12 transition-transform duration-300 group-hover:scale-105" />
           <div>
-            <span className="text-xl font-bold text-stone-900 tracking-tight font-serif font-normal group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-corporate-blue group-hover:to-corporate-light transition-all duration-500">
-              DataCare<span className="text-transparent bg-clip-text bg-gradient-to-r from-corporate-blue to-corporate-light font-medium">Softech</span>
+            <span className="text-xl font-bold text-stone-900 tracking-tight font-montserrat font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-corporate-blue group-hover:to-corporate-light transition-all duration-500">
+              DataCare<span className="text-transparent bg-clip-text bg-gradient-to-r from-corporate-blue to-corporate-light font-bold">Softech</span>
             </span>
-            <div className="text-[0.6rem] text-stone-500/80 font-normal tracking-[0.2em] uppercase pl-0.5 mt-0.5 group-hover:text-corporate-blue transition-colors duration-500 font-serif italic">Premium ERP Solutions</div>
+            <div className="text-[0.6rem] text-stone-500/80 font-bold tracking-[0.2em] uppercase pl-0.5 mt-0.5 group-hover:text-corporate-blue transition-colors duration-500 font-montserrat italic">Premium ERP Solutions</div>
           </div>
         </a>
 
@@ -52,10 +52,10 @@ const Navbar: React.FC = () => {
             <div key={link.name} className="relative group">
               <a 
                 href={link.href}
-                className="text-base font-medium text-stone-700 group-hover:text-corporate-blue transition-all duration-500 relative pb-1.5 font-serif"
+                className="text-base font-bold text-stone-700 group-hover:text-corporate-blue transition-all duration-500 relative pb-1.5 font-montserrat"
               >
                 <span className="absolute -bottom-1 left-0 w-full h-px bg-stone-300/60"></span>
-                <span className="block relative z-10 font-normal">{link.name}</span>
+                <span className="block relative z-10 font-bold">{link.name}</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-corporate-blue to-corporate-light transition-all duration-500 group-hover:w-full"></span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-corporate-accent/30 to-transparent transition-all duration-700 group-hover:w-full delay-150"></span>
               </a>
@@ -63,9 +63,9 @@ const Navbar: React.FC = () => {
           ))}
           <a 
             href="#demo"
-            className="px-5 py-2.5 bg-gradient-to-r from-corporate-blue to-corporate-light hover:from-corporate-light hover:to-corporate-blue text-white font-medium rounded-lg text-base transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 border border-corporate-accent/40 relative overflow-hidden group font-serif"
+            className="px-5 py-2.5 bg-gradient-to-r from-corporate-blue to-corporate-light hover:from-corporate-light hover:to-corporate-blue text-white font-bold rounded-lg text-base transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 border border-corporate-accent/40 relative overflow-hidden group font-times"
           >
-            <span className="relative z-10 font-medium">Request Demo</span>
+            <span className="relative z-10 font-bold">Request Demo</span>
             <div className="absolute inset-0 bg-gradient-to-r from-corporate-accent/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-corporate-accent/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute inset-0 rounded-lg border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -98,10 +98,10 @@ const Navbar: React.FC = () => {
                 <div key={link.name} className="relative group">
                   <a 
                     href={link.href}
-                    className="text-lg font-medium text-stone-800 group-hover:text-corporate-blue py-3 relative border-b border-stone-200/70 transition-all duration-500 font-serif"
+                    className="text-lg font-bold text-stone-800 group-hover:text-corporate-blue py-3 relative border-b border-stone-200/70 transition-all duration-500 font-times"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <span className="relative z-10 font-normal">{link.name}</span>
+                    <span className="relative z-10 font-bold">{link.name}</span>
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-corporate-blue to-corporate-light transition-all duration-500 group-hover:w-full"></span>
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-corporate-accent/30 to-transparent transition-all duration-700 group-hover:w-full delay-150"></span>
                   </a>
@@ -109,9 +109,9 @@ const Navbar: React.FC = () => {
               ))}
               <a 
                 href="#demo" 
-                className="text-center py-3.5 bg-gradient-to-r from-corporate-blue to-corporate-light text-white rounded-lg font-medium text-lg mt-2 shadow-xl hover:shadow-2xl transition-all duration-500 relative overflow-hidden group font-serif"
+                className="text-center py-3.5 bg-gradient-to-r from-corporate-blue to-corporate-light text-white rounded-lg font-bold text-lg mt-2 shadow-xl hover:shadow-2xl transition-all duration-500 relative overflow-hidden group font-times"
               >
-                <span className="relative z-10 font-medium">Request Demo</span>
+                <span className="relative z-10 font-bold">Request Demo</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-corporate-accent/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-corporate-accent/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute inset-0 rounded-lg border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

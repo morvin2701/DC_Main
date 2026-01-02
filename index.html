@@ -73,7 +73,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
       // Process shim for browser environment
       window.process = { env: { API_KEY: '' } };
@@ -82,8 +82,12 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              sans: ['Inter', 'Outfit', 'Montserrat', 'sans-serif'],
               serif: ['Playfair Display', 'serif'],
+              heading: ['Playfair Display', 'serif'],
+              body: ['Inter', 'Outfit', 'Montserrat', 'sans-serif'],
+              times: ['Times New Roman', 'serif'],
+              montserrat: ['Montserrat', 'sans-serif'],
             },
             colors: {
               champagne: {
@@ -135,7 +139,7 @@
       .animate-bounce-slow { animation: bounce 3s infinite; }
     </style>
     <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
     
     <script type="importmap">
