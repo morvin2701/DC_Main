@@ -17,12 +17,12 @@ export const submitContactForm = async (data: ContactFormData): Promise<{ succes
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        interestedIn: data.interestedIn,
-        message: data.message,
-        timestamp: new Date().toISOString(),
+        Name: data.name,
+        Phone: data.phone,
+        Email: data.email,
+        InterestedIn: data.interestedIn,
+        Message: data.message,
+        Timestamp: new Date().toISOString(),
       }),
     });
 
