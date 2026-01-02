@@ -14,9 +14,9 @@ export const submitContactForm = async (data: ContactFormData): Promise<{ succes
     const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({
+      body: new URLSearchParams({
         name: data.name,
         phone: data.phone,
         email: data.email,
@@ -26,12 +26,12 @@ export const submitContactForm = async (data: ContactFormData): Promise<{ succes
       }),
     });
 
-    const result = await response.json();
-    
     if (response.ok) {
       return { success: true };
     } else {
-      return { success: false, message: result.error || 'Failed to submit form' };
+      // If there's an error response, try to get text
+      const errorText = await response.text();
+      return { success: false, message: errorText || 'Failed to submit form' };
     }
   } catch (error) {
     console.error('Error submitting form:', error);
