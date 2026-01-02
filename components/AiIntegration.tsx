@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion as m } from 'framer-motion';
 import { Sparkles, Image, Scan, Database, Edit3, ArrowRight, Zap, Gem } from 'lucide-react';
+import Particles from './lightray';
 
 // Fix: Cast motion to any to resolve TypeScript errors with MotionProps
 const motion = m as any;
@@ -12,6 +13,21 @@ const AiIntegration: React.FC = () => {
       <div className="absolute inset-0 opacity-20" style={{ 
         backgroundImage: "radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(107, 114, 128, 0.1) 0%, transparent 20%)" 
       }}></div>
+      
+      {/* Particles Effect - Premium Jewelry Theme */}
+      <div className="absolute inset-0 w-full h-full z-[2]">
+        <Particles
+          particleColors={['#F59E0B', '#10B981']} // Amber and Emerald colors (jewelry tones)
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+          className="w-full h-full"
+        />
+      </div>
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">

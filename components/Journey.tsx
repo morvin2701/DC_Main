@@ -35,7 +35,7 @@ const Journey: React.FC = () => {
   return (
     <section className="py-24 bg-gradient-to-br from-blue-50 via-sky-50/30 to-blue-50 relative overflow-hidden">
       {/* Premium Background Image */}
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-no-repeat opacity-45"></div>
+      <div className="absolute inset-0 bg-[url('/assets/Journey.jpg')] bg-cover bg-center bg-no-repeat opacity-30"></div>
       
       {/* Premium Background Pattern */}
       <div className="absolute inset-0 opacity-20" style={{ 
@@ -51,7 +51,7 @@ const Journey: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-stone-900 mb-4">Your Journey With Us</h2>
-          <p className="text-stone-500 max-w-2xl mx-auto">
+          <p className="text-stone-900 max-w-2xl mx-auto">
             We don't just sell software; we partner with you for success. Our proven onboarding methodology ensures rapid value realization.
           </p>
         </div>
