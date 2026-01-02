@@ -16,14 +16,12 @@ export const submitContactForm = async (data: ContactFormData): Promise<{ succes
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: new URLSearchParams({
-        'Name': data.name,
-        'Phone Number': data.phone,
-        'Email': data.email,
-        'City': data.city,
-        'Message': data.message,
-        'Timestamp': new Date().toISOString(),
-      }),
+      body: 'Client Name=' + encodeURIComponent(data.name) +
+            '&Mobile No=' + encodeURIComponent(data.phone) +
+            '&Email=' + encodeURIComponent(data.email) +
+            '&City=' + encodeURIComponent(data.city) +
+            '&Notes=' + encodeURIComponent(data.message) +
+            '&Timestamp=' + encodeURIComponent(new Date().toISOString()),
     });
 
     if (response.ok) {
