@@ -6,9 +6,9 @@ import * as THREE from 'three';
 import IntroParticles from './IntroParticles';
 
 // Premium Assets for Device Screens
-const LAPTOP_IMG = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"; // Analytical Dashboard
-const TABLET_IMG = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"; // Data Visualization
-const PHONE_IMG = "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=1600&auto=format&fit=crop"; // Mobile App Interface
+const LAPTOP_IMG = "assets/Next.jpg"; // Analytical Dashboard
+const TABLET_IMG = "assets/HeroTablet.PNG"; // Data Visualization
+const PHONE_IMG = "assets/HeroMobile.PNG"; // Mobile App Interface
 
 // Custom Loader Component with Premium Styling
 const Loader = () => {

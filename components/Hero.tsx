@@ -77,9 +77,9 @@ const Hero: React.FC = () => {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-corporate-blue"></span>
                   </span>
-                  <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-600 group-hover:text-corporate-blue transition-colors">
+                  {/* <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-600 group-hover:text-corporate-blue transition-colors">
                     Enterprise Edition 2.0 Live
-                  </span>
+                  </span> */}
                </div>
             </motion.div>
             
