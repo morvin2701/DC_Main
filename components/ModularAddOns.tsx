@@ -104,22 +104,7 @@ const ModularAddOns: React.FC = () => {
       color: 'from-purple-500 to-violet-500',
       details: 'Our CRM reporting system tracks customer interactions, purchase patterns, and preferences. Use this data to implement loyalty programs and targeted marketing campaigns for better customer retention.'
     },
-    {
-      id: 'modification',
-      title: 'Software Modification',
-      description: 'Customized ERP solutions for specific needs',
-      features: [
-        'Tailored functionality',
-        'Custom reports',
-        'Industry-specific features',
-        'Ongoing support'
-      ],
-      valueProposition: 'Get tailor-made solutions for your business',
-      successMetrics: 'Successfully customized for 300+ businesses',
-      icon: <Settings className="w-6 h-6" />,
-      color: 'from-indigo-500 to-purple-500',
-      details: 'Our customization services provide tailored ERP solutions to meet your specific business needs. We develop custom features, reports, and workflows that align with your unique processes.'
-    },
+
     {
       id: 'branch',
       title: 'Branch Management',

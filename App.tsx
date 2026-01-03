@@ -21,7 +21,9 @@ function App() {
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       <BackgroundParticles />
       <Navbar />
-      <Hero />
+      <div className="pt-24">
+        <Hero />
+      </div>
       <AiIntegration />
       <VideoGeneration />
       <WhyChooseUs />

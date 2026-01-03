@@ -36,19 +36,22 @@ interface Scene3DProps {
 
 // -- Background Animation Elements --
 const FloatingFloatingShapes = () => {
-  const count = 5;
+  const { size } = useThree();
+  const isMobile = size.width < 768;
+  const count = isMobile ? 3 : 5; // Fewer shapes on mobile
+  
   const shapes = useMemo(() => {
     return new Array(count).fill(0).map(() => ({
       position: [
-        (Math.random() - 0.5) * 15,
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 5 - 5 // Push back
+        (Math.random() - 0.5) * (isMobile ? 8 : 15),
+        (Math.random() - 0.5) * (isMobile ? 6 : 10),
+        (Math.random() - 0.5) * (isMobile ? 3 : 5) - (isMobile ? 3 : 5) // Push back
       ],
-      scale: 0.5 + Math.random() * 1.5,
+      scale: (isMobile ? 0.3 : 0.5) + Math.random() * (isMobile ? 0.8 : 1.5),
       rotation: [Math.random() * Math.PI, Math.random() * Math.PI, 0],
-      speed: 0.2 + Math.random() * 0.5
+      speed: (isMobile ? 0.1 : 0.2) + Math.random() * (isMobile ? 0.3 : 0.5)
     }));
-  }, []);
+  }, [isMobile]);
 
   return (
     <group>
@@ -56,8 +59,8 @@ const FloatingFloatingShapes = () => {
         <Float 
             key={i} 
             speed={shape.speed} 
-            rotationIntensity={1} 
-            floatIntensity={2} 
+            rotationIntensity={isMobile ? 0.5 : 1} 
+            floatIntensity={isMobile ? 1 : 2} 
             position={shape.position as [number, number, number]}
         >
           <Octahedron args={[1, 0]} scale={shape.scale}>
@@ -67,7 +70,7 @@ const FloatingFloatingShapes = () => {
               metalness={0.1}
               transmission={0.9}
               transparent
-              opacity={0.5}
+              opacity={isMobile ? 0.3 : 0.5}
               thickness={2}
             />
           </Octahedron>
@@ -346,15 +349,23 @@ const ResponsiveClusterGroup = ({ children, introPhase }: { children: React.Reac
 const CameraRig = ({ mode }: { mode: 'intro' | 'main' }) => {
   const cameraRef = useRef<THREE.PerspectiveCamera>(null);
   const groupRef = useRef<THREE.Group>(null);
+  const { size } = useThree();
+  const isMobile = size.width < 768;
 
   useFrame((state, delta) => {
     if (!groupRef.current) return;
     
     // Intro -> Main
     const isIntro = mode === 'intro';
-    const targetZ = isIntro ? 10 : 7.5;
-    const targetY = isIntro ? 1.5 : 0;
-    const targetRotX = isIntro ? 0.1 : 0;
+    let targetZ = isIntro ? 10 : 7.5;
+    let targetY = isIntro ? 1.5 : 0;
+    let targetRotX = isIntro ? 0.1 : 0;
+    
+    // Adjust camera position for mobile to reduce empty space
+    if (isMobile) {
+      targetZ = isIntro ? 12 : 10;
+      targetY = isIntro ? 2 : 0.5;
+    }
 
     const lerpSpeed = delta * 1.5; // Slower, cinematic camera movement
 
@@ -365,13 +376,15 @@ const CameraRig = ({ mode }: { mode: 'intro' | 'main' }) => {
 
   return (
     <group ref={groupRef} position={[0, 1.5, 10]} rotation={[0.1, 0, 0]}>
-      <PerspectiveCamera makeDefault ref={cameraRef} position={[0, 0, 0]} fov={32} />
+      <PerspectiveCamera makeDefault ref={cameraRef} position={[0, 0, 0]} fov={isMobile ? 40 : 32} />
     </group>
   );
 };
 
 const SceneContent: React.FC<Scene3DProps> = ({ onIntroComplete }) => {
   const [introPhase, setIntroPhase] = useState<'active' | 'transitioning' | 'finished'>('active');
+  const { size } = useThree();
+  const isMobile = size.width < 768;
 
   useEffect(() => {
     // Intro sequence timing
@@ -393,15 +406,15 @@ const SceneContent: React.FC<Scene3DProps> = ({ onIntroComplete }) => {
   return (
     <>
         {/* Pure White Fog to blend floor into infinity */}
-        <fog attach="fog" args={['#ffffff', 5, 25]} />
+        <fog attach="fog" args={['#ffffff', isMobile ? 10 : 5, isMobile ? 30 : 25]} />
 
-        <ambientLight intensity={1.5} />
+        <ambientLight intensity={isMobile ? 1.2 : 1.5} />
         {/* Cinematic Studio Lighting - Neutral White */}
-        <spotLight position={[5, 8, 5]} angle={0.5} penumbra={1} intensity={2.0} color="#ffffff" castShadow shadowBias={-0.0001} />
-        <spotLight position={[-5, 5, 2]} angle={0.5} penumbra={1} intensity={1.5} color="#f8fafc" /> 
-        <spotLight position={[0, 5, -5]} angle={0.5} penumbra={1} intensity={1.5} color="#ffffff" /> 
+        <spotLight position={[5, 8, 5]} angle={0.5} penumbra={1} intensity={isMobile ? 1.5 : 2.0} color="#ffffff" castShadow shadowBias={-0.0001} />
+        <spotLight position={[-5, 5, 2]} angle={0.5} penumbra={1} intensity={isMobile ? 1.2 : 1.5} color="#f8fafc" /> 
+        <spotLight position={[0, 5, -5]} angle={0.5} penumbra={1} intensity={isMobile ? 1.2 : 1.5} color="#ffffff" /> 
         
-        <Environment preset="city" blur={0.7} background={false} />
+        <Environment preset="city" blur={isMobile ? 0.5 : 0.7} background={false} />
         
         {/* Background Animation Layer */}
         <FloatingFloatingShapes />
@@ -416,8 +429,10 @@ const SceneContent: React.FC<Scene3DProps> = ({ onIntroComplete }) => {
              <DeviceCluster introPhase={introPhase} />
         </ResponsiveClusterGroup>
 
-        {/* Shadow Only - No Physical Floor Mesh */}
-        <ContactShadows position={[0, -2.95, 0]} opacity={0.4} scale={25} blur={2.5} far={4} color="#000000" frames={1} />
+        {/* Only show shadows on desktop */}
+        {!isMobile && (
+          <ContactShadows position={[0, -2.95, 0]} opacity={0.4} scale={25} blur={2.5} far={4} color="#000000" frames={1} />
+        )}
     </>
   );
 }
@@ -435,6 +450,7 @@ const Premium3DIntro: React.FC<Scene3DProps> = (props) => {
         dpr={[1, 1.5]}
         shadows
         className="touch-none" 
+        camera={{ position: [0, 0, 10], fov: 32 }}
       > 
         <Suspense fallback={<Loader />}>
             <SceneContent {...props} />
