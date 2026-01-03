@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion as m } from 'framer-motion';
-import { Sparkles, Image, Scan, Database, Edit3, ArrowRight, Zap, Gem } from 'lucide-react';
+import { motion as m, useScroll, useTransform } from 'framer-motion';
+import { Sparkles, Image, Scan, Database, Edit3, ArrowRight, Zap, Gem, Eye, Download, RotateCcw } from 'lucide-react';
 import Particles from './lightray';
 
 // Fix: Cast motion to any to resolve TypeScript errors with MotionProps

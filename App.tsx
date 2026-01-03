@@ -7,6 +7,7 @@ import Hardware from './components/Hardware';
 import Journey from './components/Journey';
 import MobileApps from './components/MobileApps';
 import AiIntegration from './components/AiIntegration';
+import VideoGeneration from './components/VideoGeneration';
 import TeamSection from './components/TeamSection';
 import AIChat from './components/AIChat';
 import ContactPage from './components/ContactPage';
@@ -22,6 +23,7 @@ function App() {
       <Navbar />
       <Hero />
       <AiIntegration />
+      <VideoGeneration />
       <WhyChooseUs />
       <div id="hardware">
         <Hardware  />
