@@ -6,9 +6,9 @@ import * as THREE from 'three';
 import IntroParticles from './IntroParticles';
 
 // Premium Assets for Device Screens
-const LAPTOP_IMG = "assets/Next.jpg"; // Analytical Dashboard
-const TABLET_IMG = "assets/HeroTablet.PNG"; // Data Visualization
-const PHONE_IMG = "assets/HeroMobile.PNG"; // Mobile App Interface
+const LAPTOP_IMG = "/Next.jpg"; // Analytical Dashboard
+const TABLET_IMG = "assets/HeroTablet.PNG"; // Data Visualization - fallback
+const PHONE_IMG = "/assets/HeroMobile.PNG"; // Mobile App Interface - fallback
 
 // Custom Loader Component with Premium Styling
 const Loader = () => {
