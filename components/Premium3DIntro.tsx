@@ -7,8 +7,8 @@ import IntroParticles from './IntroParticles';
 
 // Premium Assets for Device Screens
 const LAPTOP_IMG = "/Next.jpg"; // Analytical Dashboard
-const TABLET_IMG = "assets/HeroTablet.PNG"; // Data Visualization - fallback
-const PHONE_IMG = "/assets/HeroMobile.PNG"; // Mobile App Interface - fallback
+const TABLET_IMG = "/HeroTablet.PNG"; // Data Visualization
+const PHONE_IMG = "/HeroMobile.PNG"; // Mobile App Interface
 
 // Custom Loader Component with Premium Styling
 const Loader = () => {
