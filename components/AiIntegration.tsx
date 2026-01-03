@@ -1,12 +1,15 @@
 import React from 'react';
 import { motion as m, useScroll, useTransform } from 'framer-motion';
-import { Sparkles, Image, Scan, Database, Edit3, ArrowRight, Zap, Gem, Eye, Download, RotateCcw } from 'lucide-react';
+import { Sparkles, Image, Scan, Database, Edit3, ArrowRight, Zap, Gem, Eye, Download, RotateCcw, ArrowDown } from 'lucide-react';
 import Particles from './lightray';
 
 // Fix: Cast motion to any to resolve TypeScript errors with MotionProps
 const motion = m as any;
 
 const AiIntegration: React.FC = () => {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  
   return (
     <section id="ai-integration" className="py-24 bg-gradient-to-br from-stone-900 via-slate-900 to-stone-900 text-white relative overflow-hidden">
       {/* Premium Background Pattern */}
@@ -162,6 +165,8 @@ const AiIntegration: React.FC = () => {
           </div>
         </div>
       </div>
+      
+    
     </section>
   );
 };

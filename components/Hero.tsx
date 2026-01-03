@@ -66,22 +66,6 @@ const Hero: React.FC = () => {
             animate={introFinished ? "show" : "hidden"}
             className="flex flex-col items-start w-full max-w-xl"
           >
-            {/* Live Status Badge */}
-            <motion.div 
-              variants={itemVariants}
-              className="relative group cursor-pointer"
-            >
-               <div className="absolute -inset-0.5 bg-slate-200 rounded-full blur opacity-40 group-hover:opacity-60 transition duration-500"></div>
-               <div className="relative inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-xl border border-slate-200 shadow-sm transition-all duration-300 hover:border-blue-200">
-                  <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-corporate-blue"></span>
-                  </span>
-                  {/* <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-600 group-hover:text-corporate-blue transition-colors">
-                    Enterprise Edition 2.0 Live
-                  </span> */}
-               </div>
-            </motion.div>
             
             {/* Headline */}
             <motion.h1 

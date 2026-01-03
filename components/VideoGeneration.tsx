@@ -36,7 +36,7 @@ const VideoGeneration: React.FC = () => {
           particleBaseSize={80}
           moveParticlesOnHover={true}
           alphaParticles={false}
-          disableRotation={false}
+          disableRotation={false}       
           className="w-full h-full"
         />
       </div>
