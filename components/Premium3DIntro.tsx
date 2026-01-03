@@ -205,6 +205,9 @@ const DeviceCluster = ({ introPhase }: { introPhase: string }) => {
   const tabletRef = useRef<THREE.Group>(null);
   const phoneRef = useRef<THREE.Group>(null);
   
+  const { size } = useThree();
+  const isMobile = size.width < 768;
+  
   useFrame((state, delta) => {
     
     // Rotation Correction Logic:
@@ -230,26 +233,29 @@ const DeviceCluster = ({ introPhase }: { introPhase: string }) => {
     const isIntro = introPhase === 'active';
     const lerpSpeed = 4 * delta;
 
-    // Laptop: Scale 0->1, Y -2->0
-    if (laptopRef.current) {
-        const targetScale = isIntro ? 0 : 1;
-        const targetY = isIntro ? -2 : 0;
-        laptopRef.current.scale.setScalar(THREE.MathUtils.lerp(laptopRef.current.scale.x, targetScale, lerpSpeed));
-        laptopRef.current.position.y = THREE.MathUtils.lerp(laptopRef.current.position.y, targetY, lerpSpeed);
-    }
+    // Only animate devices if not on mobile
+    if (!isMobile) {
+      // Laptop: Scale 0->1, Y -2->0
+      if (laptopRef.current) {
+          const targetScale = isIntro ? 0 : 1;
+          const targetY = isIntro ? -2 : 0;
+          laptopRef.current.scale.setScalar(THREE.MathUtils.lerp(laptopRef.current.scale.x, targetScale, lerpSpeed));
+          laptopRef.current.position.y = THREE.MathUtils.lerp(laptopRef.current.position.y, targetY, lerpSpeed);
+      }
 
-    // Tablet: 
-    // Adjusted Spacing: -2.35 is the sweet spot. Close to laptop (1.6 edge) but no overlap.
-    if (tabletRef.current) {
-        const targetX = isIntro ? -5 : -2.35; 
-        tabletRef.current.position.x = THREE.MathUtils.lerp(tabletRef.current.position.x, targetX, lerpSpeed);
-    }
+      // Tablet: 
+      // Adjusted Spacing: -2.35 is the sweet spot. Close to laptop (1.6 edge) but no overlap.
+      if (tabletRef.current) {
+          const targetX = isIntro ? -5 : -2.35; 
+          tabletRef.current.position.x = THREE.MathUtils.lerp(tabletRef.current.position.x, targetX, lerpSpeed);
+      }
 
-    // Phone:
-    // Adjusted Spacing: 1.6 keeps it balanced on the right.
-    if (phoneRef.current) {
-        const targetX = isIntro ? 5 : 1.6;
-        phoneRef.current.position.x = THREE.MathUtils.lerp(phoneRef.current.position.x, targetX, lerpSpeed);
+      // Phone:
+      // Adjusted Spacing: 1.6 keeps it balanced on the right.
+      if (phoneRef.current) {
+          const targetX = isIntro ? 5 : 1.6;
+          phoneRef.current.position.x = THREE.MathUtils.lerp(phoneRef.current.position.x, targetX, lerpSpeed);
+      }
     }
   });
 
@@ -264,22 +270,29 @@ const DeviceCluster = ({ introPhase }: { introPhase: string }) => {
           rotation={[0, 0, 0]}
           polar={[-0.1, 0.1]} 
           azimuth={[-0.1, 0.1]} // Restricted azimuth to keep "straight" look preserved
+          enabled={!isMobile} // Disable controls on mobile
         >
             <group>
                 {/* Laptop - Central Anchor */}
-                <group ref={laptopRef}>
-                  <LaptopModel />
-                </group>
+                {!isMobile && (
+                  <group ref={laptopRef}>
+                    <LaptopModel />
+                  </group>
+                )}
 
                 {/* Tablet - Left - Tilted slightly */}
-                <group ref={tabletRef} position={[-5, 0, 0.7]} rotation={[0, 0.3, 0]}>
-                    <TabletModel />
-                </group>
+                {!isMobile && (
+                  <group ref={tabletRef} position={[-5, 0, 0.7]} rotation={[0, 0.3, 0]}>
+                      <TabletModel />
+                  </group>
+                )}
 
                 {/* Phone - Right */}
-                <group ref={phoneRef} position={[5, -0.25, 1.2]}>
-                    <PhoneModel />
-                </group>
+                {!isMobile && (
+                  <group ref={phoneRef} position={[5, -0.25, 1.2]}>
+                      <PhoneModel />
+                  </group>
+                )}
             </group>
         </PresentationControls>
     </group>
@@ -288,7 +301,7 @@ const DeviceCluster = ({ introPhase }: { introPhase: string }) => {
 
 const ResponsiveClusterGroup = ({ children, introPhase }: { children: React.ReactNode, introPhase: string }) => {
   const { viewport, size } = useThree();
-  const isMobile = size.width < 1024; 
+  const isMobile = size.width < 768; 
   const groupRef = useRef<THREE.Group>(null);
   
   useFrame((state, delta) => {
@@ -299,10 +312,10 @@ const ResponsiveClusterGroup = ({ children, introPhase }: { children: React.Reac
       let targetScale = 1;
 
       if (isMobile) {
-          // Mobile: Top Center.
+          // Mobile: Hide the cluster completely
           targetX = 0;
-          targetY = viewport.height * 0.15; 
-          targetScale = 0.52; 
+          targetY = 10; // Move off-screen
+          targetScale = 0; 
       } else {
           // Desktop: Right side
           targetX = viewport.width * 0.30; 
@@ -310,7 +323,7 @@ const ResponsiveClusterGroup = ({ children, introPhase }: { children: React.Reac
           targetScale = 0.68; 
       }
 
-      if (introPhase === 'active') {
+      if (introPhase === 'active' && !isMobile) {
           targetScale = 0.75;
       }
 
@@ -325,7 +338,7 @@ const ResponsiveClusterGroup = ({ children, introPhase }: { children: React.Reac
 
   return (
     <group ref={groupRef}>
-        {children}
+        {!isMobile && children} {/* Only render children on non-mobile */}
     </group>
   );
 };

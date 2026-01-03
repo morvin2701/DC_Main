@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion as m, useScroll, useTransform } from 'framer-motion';
 import { Sparkles, Image, Scan, Database, Edit3, ArrowRight, Zap, Gem, Eye, Download, RotateCcw, ArrowDown } from 'lucide-react';
 import Particles from './lightray';
@@ -9,6 +9,28 @@ const motion = m as any;
 const AiIntegration: React.FC = () => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+    
+    const element = document.getElementById('ai-integration');
+    if (element) {
+      observer.observe(element);
+    }
+    
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, []);
   
   return (
     <section id="ai-integration" className="py-24 bg-gradient-to-br from-stone-900 via-slate-900 to-stone-900 text-white relative overflow-hidden">
