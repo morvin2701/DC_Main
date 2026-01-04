@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion as m, useScroll, useTransform, Variants } from 'framer-motion';
 import { ChevronDown, ArrowRight, Play, CheckCircle2, Gem, Sparkles, Star } from 'lucide-react';
 import Premium3DIntro from './Premium3DIntro';
@@ -8,6 +8,20 @@ const motion = m as any;
 const Hero: React.FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   const [introFinished, setIntroFinished] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 1024); // lg: block
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
 
   // Scroll Animations
   const { scrollYProgress } = useScroll({
@@ -214,9 +228,9 @@ const Hero: React.FC = () => {
         
         <motion.div 
           variants={containerVariants}
-          initial="hidden"
-          animate={introFinished ? "show" : "hidden"}
-          className="flex flex-col items-center text-center w-full max-w-md mx-auto relative z-10"
+          initial={isMobile ? "show" : "hidden"}
+          animate={isMobile ? "show" : (introFinished ? "show" : "hidden")}
+          className="flex flex-col items-center text-center w-full max-w-md mx-auto relative z-20"
         >
           
           {/* Mobile Badge */}
@@ -326,7 +340,7 @@ const Hero: React.FC = () => {
           <motion.div 
             variants={containerVariants}
             initial="hidden"
-            animate={introFinished ? "show" : "hidden"}
+            animate={!isMobile ? (introFinished ? "show" : "hidden") : "hidden"}
             className="flex flex-col items-start w-full max-w-xl"
           >
             
@@ -395,7 +409,7 @@ const Hero: React.FC = () => {
       <motion.div 
         className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-300 pointer-events-none z-30 flex flex-col items-center gap-2 lg:block hidden"
         initial={{ opacity: 0 }}
-        animate={introFinished ? { opacity: 1 } : { opacity: 0 }}
+        animate={!isMobile && introFinished ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 1.5, duration: 1 }}
       >
          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400/70">Scroll</span>
@@ -411,7 +425,7 @@ const Hero: React.FC = () => {
       <motion.div 
         className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-300 pointer-events-none z-30 flex flex-col items-center gap-2 lg:hidden block"
         initial={{ opacity: 0 }}
-        animate={introFinished ? { opacity: 1 } : { opacity: 0 }}
+        animate={isMobile || introFinished ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 1.5, duration: 1 }}
       >
          <motion.div
