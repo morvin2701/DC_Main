@@ -73,26 +73,26 @@ const AiIntegration: React.FC = () => {
               Intelligent Image Generation
             </h2>
             
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0 overflow-hidden">
               Transform your jewelry catalog with our cutting-edge AI technology. Create stunning new designs, variations, and visualizations that captivate your customers.
             </p>
             
-            <div className="space-y-3 sm:space-y-4 mb-10">
+            <div className="space-y-3 sm:space-y-4 mb-10 overflow-hidden">
               <div className="flex items-start gap-3 sm:gap-4">
                 <Sparkles className="text-emerald-400 mt-1 flex-shrink-0" size={20} />
-                <span className="text-slate-200 text-sm sm:text-base">AI-powered image generation with preferred references</span>
+                <span className="text-slate-200 text-sm sm:text-base break-words">AI-powered image generation with preferred references</span>
               </div>
               <div className="flex items-start gap-3 sm:gap-4">
                 <Scan className="text-emerald-400 mt-1 flex-shrink-0" size={20} />
-                <span className="text-slate-200 text-sm sm:text-base">Auto-analysis of existing images to generate new variations</span>
+                <span className="text-slate-200 text-sm sm:text-base break-words">Auto-analysis of existing images to generate new variations</span>
               </div>
               <div className="flex items-start gap-3 sm:gap-4">
                 <Database className="text-emerald-400 mt-1 flex-shrink-0" size={20} />
-                <span className="text-slate-200 text-sm sm:text-base">Integration with live inventory for dynamic image creation</span>
+                <span className="text-slate-200 text-sm sm:text-base break-words">Integration with live inventory for dynamic image creation</span>
               </div>
               <div className="flex items-start gap-3 sm:gap-4">
                 <Edit3 className="text-emerald-400 mt-1 flex-shrink-0" size={20} />
-                <span className="text-slate-200 text-sm sm:text-base">Seamless editing capabilities within our application</span>
+                <span className="text-slate-200 text-sm sm:text-base break-words">Seamless editing capabilities within our application</span>
               </div>
             </div>
 
@@ -124,63 +124,63 @@ const AiIntegration: React.FC = () => {
           {/* AI Visualization - Order Second on Mobile */}
           <div className="w-full lg:w-1/2 flex justify-center items-center">
             {/* Mobile-friendly visualization with premium container */}
-            <div className="relative w-full max-w-md h-[500px] sm:h-[600px] bg-gradient-to-br from-slate-800/30 to-slate-900/30 rounded-3xl backdrop-blur-sm border border-slate-700/50 p-4">
+            <div className="relative w-full max-w-md h-[500px] sm:h-[600px] bg-gradient-to-br from-slate-800/30 to-slate-900/30 rounded-3xl backdrop-blur-sm border border-slate-700/50 p-4 overflow-hidden">
               {/* Premium AI Visualization */}
-              <div className="flex flex-col items-center justify-center h-full gap-6">
+              <div className="flex flex-col items-center justify-center h-full gap-4 overflow-x-hidden w-full px-2">
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8 }}
-                  className="w-full flex flex-col items-center bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-emerald-500/40 p-6 flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] transition-all duration-500 hover:scale-[1.02] hover:border-emerald-400/70 group"
+                  className="w-full flex flex-col items-center bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-emerald-500/40 p-4 sm:p-6 flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] transition-all duration-500 hover:scale-[1.02] hover:border-emerald-400/70 group"
                 >
-                  <div className="relative mb-4">
-                    <Sparkles className="text-emerald-400 transition-all duration-300 group-hover:scale-125 group-hover:text-emerald-300" size={36} />
+                  <div className="relative mb-3 sm:mb-4">
+                    <Sparkles className="text-emerald-400 transition-all duration-300 group-hover:scale-125 group-hover:text-emerald-300" size={28} />
                     <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-emerald-500/30 to-emerald-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
                     <div className="absolute -inset-4 rounded-full bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  <div className="text-[14px] sm:text-[16px] font-bold text-slate-200 transition-colors duration-300 group-hover:text-emerald-400 uppercase tracking-widest">AI Image Generation</div>
+                  <div className="text-[12px] sm:text-[14px] font-bold text-slate-200 transition-colors duration-300 group-hover:text-emerald-400 uppercase tracking-widest text-center">AI Image Generation</div>
                 </motion.div>
                 
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="w-full flex flex-col items-center bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-amber-500/40 p-6 flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_-10px_rgba(245,158,11,0.3)] transition-all duration-500 hover:scale-[1.02] hover:border-amber-400/70 group"
+                  className="w-full flex flex-col items-center bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-amber-500/40 p-4 sm:p-6 flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_-10px_rgba(245,158,11,0.3)] transition-all duration-500 hover:scale-[1.02] hover:border-amber-400/70 group"
                 >
-                  <div className="relative mb-4">
-                    <Scan className="text-amber-400 transition-all duration-300 group-hover:scale-125 group-hover:text-amber-300" size={36} />
+                  <div className="relative mb-3 sm:mb-4">
+                    <Scan className="text-amber-400 transition-all duration-300 group-hover:scale-125 group-hover:text-amber-300" size={28} />
                     <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-amber-500/30 to-amber-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
                     <div className="absolute -inset-4 rounded-full bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  <div className="text-[14px] sm:text-[16px] font-bold text-slate-200 transition-colors duration-300 group-hover:text-amber-400 uppercase tracking-widest">Auto-Analysis</div>
+                  <div className="text-[12px] sm:text-[14px] font-bold text-slate-200 transition-colors duration-300 group-hover:text-amber-400 uppercase tracking-widest text-center">Auto-Analysis</div>
                 </motion.div>
                 
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="w-full flex flex-col items-center bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-emerald-500/40 p-6 flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] transition-all duration-500 hover:scale-[1.02] hover:border-emerald-400/70 group"
+                  className="w-full flex flex-col items-center bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-emerald-500/40 p-4 sm:p-6 flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] transition-all duration-500 hover:scale-[1.02] hover:border-emerald-400/70 group"
                 >
-                  <div className="relative mb-4">
-                    <Database className="text-emerald-400 transition-all duration-300 group-hover:scale-125 group-hover:text-emerald-300" size={36} />
+                  <div className="relative mb-3 sm:mb-4">
+                    <Database className="text-emerald-400 transition-all duration-300 group-hover:scale-125 group-hover:text-emerald-300" size={28} />
                     <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-emerald-500/30 to-emerald-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
                     <div className="absolute -inset-4 rounded-full bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  <div className="text-[14px] sm:text-[16px] font-bold text-slate-200 transition-colors duration-300 group-hover:text-emerald-400 uppercase tracking-widest">Live Inventory</div>
+                  <div className="text-[12px] sm:text-[14px] font-bold text-slate-200 transition-colors duration-300 group-hover:text-emerald-400 uppercase tracking-widest text-center">Live Inventory</div>
                 </motion.div>
                 
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="w-full flex flex-col items-center bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-amber-500/40 p-6 flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_-10px_rgba(245,158,11,0.3)] transition-all duration-500 hover:scale-[1.02] hover:border-amber-400/70 group"
+                  className="w-full flex flex-col items-center bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-amber-500/40 p-4 sm:p-6 flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_-10px_rgba(245,158,11,0.3)] transition-all duration-500 hover:scale-[1.02] hover:border-amber-400/70 group"
                 >
-                  <div className="relative mb-4">
-                    <Edit3 className="text-amber-400 transition-all duration-300 group-hover:scale-125 group-hover:text-amber-300" size={36} />
+                  <div className="relative mb-3 sm:mb-4">
+                    <Edit3 className="text-amber-400 transition-all duration-300 group-hover:scale-125 group-hover:text-amber-300" size={28} />
                     <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-amber-500/30 to-amber-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
                     <div className="absolute -inset-4 rounded-full bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  <div className="text-[14px] sm:text-[16px] font-bold text-slate-200 transition-colors duration-300 group-hover:text-amber-400 uppercase tracking-widest">Seamless Editing</div>
+                  <div className="text-[12px] sm:text-[14px] font-bold text-slate-200 transition-colors duration-300 group-hover:text-amber-400 uppercase tracking-widest text-center">Seamless Editing</div>
                 </motion.div>
               </div>
             </div>

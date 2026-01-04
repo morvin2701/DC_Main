@@ -74,12 +74,12 @@ const VideoGeneration: React.FC = () => {
                   
                   <h3 className="text-xl font-bold text-slate-200 mb-2 relative z-10">Jewelry Image</h3>
                   
-                  <div className="w-full h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500/5 to-emerald-500/5 border border-amber-500/20 flex items-center justify-center relative aspect-[9/16] mb-4">
+                  <div className="w-full h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500/5 to-emerald-500/5 border border-amber-500/20 flex items-center justify-center relative aspect-[9/16] mb-4 max-w-[300px] max-h-[533px] overflow-hidden">
                     {!inputImageError ? (
                       <img 
                         src="/assets/inputImage.jpeg" 
                         alt="Jewelry Input" 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         onError={() => setInputImageError(true)}
                       />
                     ) : (
@@ -114,12 +114,12 @@ const VideoGeneration: React.FC = () => {
                   
                   <h3 className="text-xl font-bold text-slate-200 mb-2 relative z-10">AI Generated Video</h3>
                   
-                  <div className="w-full h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-500/5 to-amber-500/5 border border-emerald-500/20 flex items-center justify-center relative aspect-[9/16] mb-4">
+                  <div className="w-full h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-500/5 to-amber-500/5 border border-emerald-500/20 flex items-center justify-center relative aspect-[9/16] mb-4 max-w-[300px] max-h-[533px] overflow-hidden">
                     {!outputVideoError ? (
                       <video 
                         src="/assets/OutputVideo.mp4" 
                         controls
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         onError={() => setOutputVideoError(true)}
                       />
                     ) : (
