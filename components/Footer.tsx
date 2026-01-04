@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-3 mb-6">
                 <Logo className="w-8 h-8" />
-                <span className="text-2xl font-serif font-bold text-stone-900 tracking-tight">Datacare<span className="text-champagne-500">.</span></span>
+                <span className="text-2xl font-serif font-bold text-stone-900 tracking-tight">Datacare<span className="text-champagne-500">Softech</span></span>
             </div>
             <p className="mb-8 leading-relaxed text-stone-500">
               Pioneering the digital transformation of the jewellery industry with precision software and hardware integration. Trusted by the best.
@@ -51,23 +51,10 @@ const Footer: React.FC = () => {
                 <span>1019, STC (Shivam Trade Center),<br />Beside One World West, Bopal,<br />Ahmedabad, Gujarat 380058</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-champagne-500 shrink-0" />
-                <span>+91 98765 43210</span>
-              </li>
-              <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-champagne-500 shrink-0" />
-                <span>sales@datacaresoftech.com</span>
+                <span>datacare.india@yahoo.com</span>
               </li>
             </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-stone-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>© {new Date().getFullYear()} Datacare Softech Pvt Ltd. All rights reserved.</p>
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-stone-900 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-stone-900 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-stone-900 transition-colors">Sitemap</a>
           </div>
         </div>
       </div>
