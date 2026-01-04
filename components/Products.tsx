@@ -165,7 +165,7 @@ const Products: React.FC = () => {
         {/* Add-ons Section */}
 
         <div className="mt-16 text-center">
-          <a href="#" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-bold text-sm bg-blue-50 px-6 py-3 rounded-full transition-colors">
+          <a href="/versionlist.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-bold text-sm bg-blue-50 px-6 py-3 rounded-full transition-colors">
             <Download size={16} /> Download Complete Feature Matrix (PDF)
           </a>
         </div>
