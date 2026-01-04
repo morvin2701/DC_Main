@@ -293,16 +293,23 @@ const Hero: React.FC = () => {
           
           {/* Mobile Call to Action */}
           <motion.div variants={itemVariants} className="flex flex-col gap-4 w-full max-w-xs mx-auto">
-            <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="relative group overflow-hidden px-6 py-3 bg-slate-900 text-white font-bold text-sm rounded-full shadow-lg hover:shadow-slate-900/20 transition-all duration-300 w-full"
+            <a 
+              href="/Datacare Softech Brochure.pdf" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
             >
-              <div className="absolute inset-0 w-full h-full bg-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <span className="relative flex items-center justify-center gap-2 font-montserrat tracking-wide">
-                Start Experience <ArrowRight size={14} />
-              </span>
-            </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative group overflow-hidden px-6 py-3 bg-slate-900 text-white font-bold text-sm rounded-full shadow-lg hover:shadow-slate-900/20 transition-all duration-300 w-full"
+              >
+                <div className="absolute inset-0 w-full h-full bg-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative flex items-center justify-center gap-2 font-montserrat tracking-wide">
+                  Download Brochure <ArrowRight size={14} />
+                </span>
+              </motion.button>
+            </a>
             
             <motion.button 
               whileHover={{ scale: 1.02 }}
@@ -365,16 +372,23 @@ const Hero: React.FC = () => {
             
             {/* Call to Action Area */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
-              <motion.button 
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative group overflow-hidden px-8 py-4 bg-slate-900 text-white font-bold text-sm rounded-full shadow-2xl hover:shadow-slate-900/20 transition-all duration-300"
+              <a 
+                href="/Datacare Softech Brochure.pdf" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
               >
-                <div className="absolute inset-0 w-full h-full bg-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <span className="relative flex items-center justify-center gap-2 font-montserrat tracking-wide">
-                  Start Experience <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </motion.button>
+                <motion.button 
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative group overflow-hidden px-8 py-4 bg-slate-900 text-white font-bold text-sm rounded-full shadow-2xl hover:shadow-slate-900/20 transition-all duration-300"
+                >
+                  <div className="absolute inset-0 w-full h-full bg-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative flex items-center justify-center gap-2 font-montserrat tracking-wide">
+                    Download Brochure <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </motion.button>
+              </a>
               
               <motion.button 
                 whileHover={{ scale: 1.02, y: -2, backgroundColor: 'rgba(255,255,255,1)' }}
