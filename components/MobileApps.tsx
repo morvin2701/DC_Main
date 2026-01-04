@@ -189,7 +189,7 @@ const MobileApps: React.FC = () => {
                            <div className="absolute inset-0 bg-gradient-to-br from-champagne-300/20 to-amber-300/10 rounded-[4rem] blur-3xl transform scale-125 -z-10"></div>
                            <div className="relative bg-gradient-to-br from-stone-100/30 to-stone-200/20 backdrop-blur-xl rounded-[3rem] border border-stone-300/40 shadow-2xl overflow-hidden p-6">
                               <img 
-                                  src="/assets/02.png" 
+                                  src="/02.png" 
                                   alt="Jewellery Accounting App" 
                                   className="w-full max-w-md rounded-[2.5rem] shadow-inner"
                                   onError={(e) => {
@@ -211,7 +211,7 @@ const MobileApps: React.FC = () => {
                            <div className="absolute inset-0 bg-gradient-to-br from-amber-300/20 to-yellow-300/10 rounded-[4rem] blur-3xl transform scale-125 -z-10"></div>
                            <div className="relative bg-gradient-to-br from-stone-100/30 to-stone-200/20 backdrop-blur-xl rounded-[3rem] border border-stone-300/40 shadow-xl overflow-hidden p-6">
                               <img 
-                                  src="/assets/04.png" 
+                                  src="/04.png" 
                                   alt="E-Catalogue" 
                                   className="w-full max-w-md rounded-[2.5rem] shadow-inner"
                                   onError={(e) => {
@@ -233,7 +233,7 @@ const MobileApps: React.FC = () => {
                            <div className="absolute inset-0 bg-gradient-to-br from-stone-300/20 to-gray-300/10 rounded-[4rem] blur-3xl transform scale-125 -z-10"></div>
                            <div className="relative bg-gradient-to-br from-stone-100/30 to-stone-200/20 backdrop-blur-xl rounded-[3rem] border border-stone-300/40 shadow-xl overflow-hidden p-6">
                               <img 
-                                  src="/assets/05.png" 
+                                  src="/05.png" 
                                   alt="Gold Scheme" 
                                   className="w-full max-w-md rounded-[2.5rem] shadow-inner"
                                   onError={(e) => {
