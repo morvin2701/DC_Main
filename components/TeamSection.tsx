@@ -1,8 +1,26 @@
+/// <reference types="vite/client" />
 import React from 'react';
-import { motion as m } from 'framer-motion';
-import { Users, Crown, Star, Award, Phone, MessageCircle, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Crown, Phone, MessageCircle, Star, Award } from 'lucide-react';
 
-const motion = m as any;
+// Load all team images from assets folder
+const teamImages = import.meta.glob('../src/assets/team_images/*.{png,jpg,jpeg}', { eager: true, import: 'default' });
+
+const getMemberImage = (id: string) => {
+  const pathPrefix = `../src/assets/team_images/${id}`;
+  const imagePath =
+    teamImages[`${pathPrefix}.png`] ||
+    teamImages[`${pathPrefix}.jpeg`] ||
+    teamImages[`${pathPrefix}.jpg`] ||
+    // Fallbacks for named files
+    (id === '22' ? teamImages['../src/assets/team_images/Kunj.jpeg'] : null) ||
+    (id === '23' ? teamImages['../src/assets/team_images/Harshil.jpeg'] : null) ||
+    (id === '15' ? teamImages['../src/assets/team_images/15.jpeg'] : null);
+
+  return (imagePath as string) || `https://placehold.co/400x400/e2e8f0/64748b?text=${id}`;
+};
+
+
 
 interface TeamMember {
   id: string;
@@ -175,7 +193,23 @@ const TeamSection: React.FC = () => {
       role: 'Sales & Technical Service Provider',
       isLeader: false,
       isOwner: false,
-      phone: '+91 9712150673'
+      phone: '+91 8200673399'
+    },
+    {
+      id: '22',
+      name: 'Kunj Rakholiya',
+      role: 'Sales & Support',
+      isLeader: false,
+      isOwner: false,
+      phone: '+91 8866102589'
+    },
+    {
+      id: '23',
+      name: 'Harshil Changani',
+      role: 'Sales & Support',
+      isLeader: false,
+      isOwner: false,
+      phone: '+91 8141151288'
     }
   ];
 
@@ -269,8 +303,8 @@ const TeamSection: React.FC = () => {
                   <div className="relative mb-6">
                     <div className="absolute -inset-2 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
                     <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                      <img 
-                        src={`/team/${owner.id}.png?${Date.now()}`} 
+                      <img
+                        src={getMemberImage(owner.id)}
                         alt={owner.name}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         onError={(e) => {
@@ -289,17 +323,17 @@ const TeamSection: React.FC = () => {
                   <p className="text-stone-600 text-center mb-6">
                     Visionary leader and founder of our premium jewellery ERP solution.
                   </p>
-                  
+
                   {/* Contact Information */}
                   <div className="flex flex-col sm:flex-row gap-3 w-full">
-                    <a 
-                      href={`tel:${owner.phone}`} 
+                    <a
+                      href={`tel:${owner.phone}`}
                       className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg"
                     >
                       <Phone className="w-4 h-4" />
                       <span>Call</span>
                     </a>
-                    <button 
+                    <button
                       onClick={() => handleWhatsAppClick(owner.phone!, owner.name)}
                       className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-md hover:shadow-lg"
                     >
@@ -342,8 +376,8 @@ const TeamSection: React.FC = () => {
                   <div className="relative z-10">
                     <div className="relative mb-4">
                       <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg">
-                        <img 
-                          src={`/team/${member.id}.png?${Date.now()}`} 
+                        <img
+                          src={getMemberImage(member.id)}
                           alt={member.name}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                           onError={(e) => {
@@ -363,17 +397,17 @@ const TeamSection: React.FC = () => {
                       <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
                       <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                     </div>
-                    
+
                     {/* Contact Information */}
                     <div className="flex flex-col gap-2">
-                      <a 
-                        href={`tel:${member.phone}`} 
+                      <a
+                        href={`tel:${member.phone}`}
                         className="flex items-center justify-center gap-2 py-2 px-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 text-sm"
                       >
                         <Phone className="w-3 h-3" />
                         <span>Call</span>
                       </a>
-                      <button 
+                      <button
                         onClick={() => handleWhatsAppClick(member.phone!, member.name)}
                         className="flex items-center justify-center gap-2 py-2 px-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 text-sm"
                       >
@@ -413,8 +447,8 @@ const TeamSection: React.FC = () => {
               >
                 <div className="relative mb-4">
                   <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg relative">
-                    <img 
-                      src={`/team/${member.id}.png?${Date.now()}`} 
+                    <img
+                      src={getMemberImage(member.id)}
                       alt={member.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       onError={(e) => {
@@ -427,17 +461,17 @@ const TeamSection: React.FC = () => {
                 </div>
                 <h3 className="font-bold text-stone-900 text-lg mb-2">{member.name}</h3>
                 <p className="text-stone-600 mb-4">{member.role}</p>
-                
+
                 {/* Contact Information */}
                 <div className="flex flex-col gap-2">
-                  <a 
-                    href={`tel:${member.phone}`} 
+                  <a
+                    href={`tel:${member.phone}`}
                     className="flex items-center justify-center gap-2 py-2 px-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 text-sm"
                   >
                     <Phone className="w-3 h-3" />
                     <span>Call</span>
                   </a>
-                  <button 
+                  <button
                     onClick={() => handleWhatsAppClick(member.phone!, member.name)}
                     className="flex items-center justify-center gap-2 py-2 px-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 text-sm"
                   >

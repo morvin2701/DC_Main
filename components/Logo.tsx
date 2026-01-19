@@ -2,9 +2,9 @@ import React from 'react';
 
 const Logo: React.FC<{ className?: string }> = ({ className = "w-200 h-200" }) => {
   return (
-    <img 
-      src="/logo.png" 
-      alt="Datacare Softech Logo" 
+    <img
+      src={`${import.meta.env.BASE_URL}logo.png`}
+      alt="Datacare Softech Logo"
       className={className}
       onError={(e) => {
         // Fallback to the original SVG if the image fails to load

@@ -26,5 +26,12 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "include": [
+    "src",
+    "components",
+    "images.d.ts",
+    "types.ts",
+    "vite.config.ts"
+  ]
 }

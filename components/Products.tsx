@@ -6,75 +6,75 @@ import { Download, Check, ArrowRight, Plus, Box, ShieldCheck, Smartphone, Layers
 const motion = m as any;
 
 const productsData: Product[] = [
-  { 
-    id: '1', 
-    name: 'Standard', 
-    tagline: 'Retail Essentials', 
+  {
+    id: '1',
+    name: 'Standard',
+    tagline: 'Retail Essentials',
     features: [
       'Barcode & Tag Stock Management',
       'GST, HUID & Compliance Reports',
       'Repairing Module & Order Booking',
       'Daily Gold/Silver Rate Fixing',
       'Dead Stock & Fine Reports'
-    ], 
-    type: 'Retail', 
-    tier: 'Standard' 
+    ],
+    type: 'Retail',
+    tier: 'Standard'
   },
-  { 
-    id: '2', 
-    name: 'Ultra', 
-    tagline: 'Mobility Suite', 
+  {
+    id: '2',
+    name: 'Ultra',
+    tagline: 'Mobility Suite',
     features: [
       'Includes All Standard Features',
       'iOS & Android Mobile Apps',
       'Monthly Gold/Amount Schemes',
       'Old Item Melt Process',
       'Bill-to-Bill Amount Receipt'
-    ], 
-    type: 'Retail', 
-    tier: 'Ultra' 
+    ],
+    type: 'Retail',
+    tier: 'Ultra'
   },
-  { 
-    id: '3', 
-    name: 'Pro', 
-    tagline: 'Wholesale & Finance', 
+  {
+    id: '3',
+    name: 'Pro',
+    tagline: 'Wholesale & Finance',
     features: [
       'Includes All Ultra Features',
       'Girvi / Loan Management',
       'Purchase Approval & Bill Images',
       'Bank Reconciliation & Analysis',
       'Stock Movement (Weight-wise)'
-    ], 
-    type: 'Wholesale', 
-    tier: 'Pro' 
+    ],
+    type: 'Wholesale',
+    tier: 'Pro'
   },
-  { 
-    id: '4', 
-    name: 'Advanced', 
-    tagline: 'Manufacturing Unit', 
+  {
+    id: '4',
+    name: 'Advanced',
+    tagline: 'Manufacturing Unit',
     features: [
       'Includes All Pro Features',
       'Employee Salary Management',
       'Jewellery Certificates',
       'Day Wise Trial Balance Sheet',
       'Sale Bill Split Facility'
-    ], 
-    type: 'Manufacturing', 
-    tier: 'Advanced' 
+    ],
+    type: 'Manufacturing',
+    tier: 'Advanced'
   },
-  { 
-    id: '5', 
-    name: 'Enterprise', 
-    tagline: 'Multi-Chain Ecosystem', 
+  {
+    id: '5',
+    name: 'Enterprise',
+    tagline: 'Multi-Chain Ecosystem',
     features: [
       'Includes All Advanced Features',
       'Diamond & Bullion Management',
       'Customer Loyalty Program',
       'Deep Profitability Analytics',
       'Granular User Locks & Permissions'
-    ], 
-    type: 'Chain', 
-    tier: 'Enterprise' 
+    ],
+    type: 'Chain',
+    tier: 'Enterprise'
   },
 ];
 
@@ -85,19 +85,19 @@ const Products: React.FC = () => {
 
   const handleSelectEdition = (productName: string, tier: string, productId: string) => {
     setIsProcessing(productName);
-    
+
     // Add animation effect
     setTimeout(() => {
       setSelectedEdition(productName);
       setIsProcessing(null);
-      
+
       // Add the product to comparison
       if (!selectedForComparison.includes(productId)) {
         if (selectedForComparison.length < 2) {
           // Add if less than 2 selected
           const newComparisonList = [...selectedForComparison, productId];
           setSelectedForComparison(newComparisonList);
-          
+
           // If we now have 2 products, show comparison view immediately
           if (newComparisonList.length === 2) {
             setComparisonMode(false); // Ensure comparison mode is off to show comparison view
@@ -141,8 +141,8 @@ const Products: React.FC = () => {
     setComparisonMode(false);
   };
 
-  const filteredProducts = filter === 'All' 
-    ? productsData 
+  const filteredProducts = filter === 'All'
+    ? productsData
     : productsData.filter(p => p.type === filter);
 
   return (
@@ -153,17 +153,16 @@ const Products: React.FC = () => {
           <p className="text-stone-500 max-w-2xl mx-auto">
             Select the tier that matches your operational scale. From single showrooms to complex multi-branch chains.
           </p>
-          
+
           <div className="flex flex-wrap justify-center gap-2 mt-8">
             {['All', 'Retail', 'Wholesale', 'Manufacturing', 'Chain'].map(type => (
               <button
                 key={type}
                 onClick={() => setFilter(type)}
-                className={`px-4 py-2 rounded text-xs font-bold uppercase tracking-wider transition-all border ${
-                  filter === type 
-                    ? 'bg-stone-900 text-white border-stone-900 shadow-md' 
-                    : 'bg-white text-stone-500 border-stone-200 hover:border-blue-400 hover:text-blue-600'
-                }`}
+                className={`px-4 py-2 rounded text-xs font-bold uppercase tracking-wider transition-all border ${filter === type
+                  ? 'bg-stone-900 text-white border-stone-900 shadow-md'
+                  : 'bg-white text-stone-500 border-stone-200 hover:border-blue-400 hover:text-blue-600'
+                  }`}
               >
                 {type}
               </button>
@@ -172,7 +171,7 @@ const Products: React.FC = () => {
         </div>
 
 
-        
+
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProducts.map((product) => (
@@ -182,11 +181,10 @@ const Products: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className={`flex flex-col bg-white border rounded-xl p-6 hover:shadow-xl transition-all duration-300 relative ${
-                  product.tier === 'Enterprise' 
-                    ? 'border-blue-500 ring-1 ring-blue-500 shadow-lg shadow-blue-100' 
-                    : 'border-stone-200 shadow-sm'
-                }`}
+                className={`flex flex-col bg-white border rounded-xl p-6 hover:shadow-xl transition-all duration-300 relative ${product.tier === 'Enterprise'
+                  ? 'border-blue-500 ring-1 ring-blue-500 shadow-lg shadow-blue-100'
+                  : 'border-stone-200 shadow-sm'
+                  }`}
               >
                 {comparisonMode && (
                   <div className="absolute top-3 right-3 z-10">
@@ -227,9 +225,8 @@ const Products: React.FC = () => {
                   <ul className="space-y-3 mb-8">
                     {product.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start text-stone-600 text-xs leading-relaxed">
-                        <Check className={`w-3.5 h-3.5 mt-0.5 mr-2 flex-shrink-0 ${
-                            product.tier === 'Enterprise' ? 'text-blue-600' : 'text-green-500'
-                        }`} />
+                        <Check className={`w-3.5 h-3.5 mt-0.5 mr-2 flex-shrink-0 ${product.tier === 'Enterprise' ? 'text-blue-600' : 'text-green-500'
+                          }`} />
                         {feature}
                       </li>
                     ))}
@@ -241,13 +238,12 @@ const Products: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleSelectEdition(product.name, product.tier, product.id)}
                   disabled={isProcessing === product.name}
-                  className={`w-full py-3 rounded-lg font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${
-                    isProcessing === product.name
-                      ? 'bg-stone-300 text-stone-500 cursor-not-allowed'
-                      : product.tier === 'Enterprise' 
-                        ? 'bg-gradient-to-r from-blue-600 to-amber-500 text-white hover:from-blue-700 hover:to-amber-600 shadow-lg hover:shadow-xl'
-                        : 'bg-gradient-to-r from-stone-700 to-stone-800 text-white hover:from-stone-800 hover:to-stone-900 border border-stone-200 shadow-md hover:shadow-lg'
-                  }`}
+                  className={`w-full py-3 rounded-lg font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${isProcessing === product.name
+                    ? 'bg-stone-300 text-stone-500 cursor-not-allowed'
+                    : product.tier === 'Enterprise'
+                      ? 'bg-gradient-to-r from-blue-600 to-amber-500 text-white hover:from-blue-700 hover:to-amber-600 shadow-lg hover:shadow-xl'
+                      : 'bg-gradient-to-r from-stone-700 to-stone-800 text-white hover:from-stone-800 hover:to-stone-900 border border-stone-200 shadow-md hover:shadow-lg'
+                    }`}
                 >
                   {isProcessing === product.name ? (
                     <>
@@ -268,7 +264,7 @@ const Products: React.FC = () => {
 
         {/* Comparison View */}
         {selectedForComparison.length === 2 && !comparisonMode && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mt-16 rounded-3xl overflow-hidden bg-gradient-to-br from-stone-50 to-stone-100 shadow-2xl border border-stone-200/50"
@@ -280,7 +276,7 @@ const Products: React.FC = () => {
                   <h2 className="text-3xl font-bold font-montserrat">Product Comparison</h2>
                   <p className="text-blue-100 mt-1">Detailed feature comparison between selected editions</p>
                 </div>
-                <button 
+                <button
                   onClick={resetComparison}
                   className="px-6 py-3 bg-white/20 hover:bg-white/30 rounded-xl text-white font-bold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
                 >
@@ -289,7 +285,7 @@ const Products: React.FC = () => {
                 </button>
               </div>
             </div>
-            
+
             <div className="p-1 bg-gradient-to-r from-blue-500/20 via-transparent to-amber-500/20">
               <div className="overflow-x-auto bg-white rounded-2xl shadow-inner">
                 <table className="w-full min-w-full">
@@ -322,9 +318,9 @@ const Products: React.FC = () => {
                       // Get both products
                       const product1 = productsData.find(p => p.id === selectedForComparison[0]);
                       const product2 = productsData.find(p => p.id === selectedForComparison[1]);
-                      
+
                       if (!product1 || !product2) return null;
-                      
+
                       // Define the tier hierarchy
                       const tierOrder = {
                         'Standard': 1,
@@ -333,15 +329,15 @@ const Products: React.FC = () => {
                         'Advanced': 4,
                         'Enterprise': 5
                       };
-                      
+
                       // Determine which product is higher in the hierarchy
                       const isProduct1Higher = tierOrder[product1.tier] > tierOrder[product2.tier];
                       const isProduct2Higher = tierOrder[product2.tier] > tierOrder[product1.tier];
-                      
+
                       // Get all features including inherited ones
                       const getAllFeaturesForProduct = (product) => {
                         let allFeatures = [...product.features];
-                        
+
                         // Based on the hierarchy, add features from lower tiers
                         if (product.tier === 'Ultra') {
                           // Ultra includes Standard features
@@ -366,38 +362,38 @@ const Products: React.FC = () => {
                           const standardFeatures = productsData.find(p => p.tier === 'Standard')?.features || [];
                           allFeatures = [...new Set([...allFeatures, ...advancedFeatures, ...proFeatures, ...ultraFeatures, ...standardFeatures])];
                         }
-                        
+
                         return allFeatures;
                       };
-                      
+
                       // Get all features for both products including inherited
                       const product1AllFeatures = getAllFeaturesForProduct(product1);
                       const product2AllFeatures = getAllFeaturesForProduct(product2);
-                      
+
                       // Get all unique features
                       const allFeatures = Array.from(
                         new Set([...product1AllFeatures, ...product2AllFeatures])
                       ).sort();
-                      
+
                       return allFeatures.map((feature, index) => {
                         // Check if feature is directly included in each product
                         const isFeatureInProduct1 = product1.features.includes(feature);
                         const isFeatureInProduct2 = product2.features.includes(feature);
-                        
+
                         // Check if feature is inherited
                         const isFeatureInheritedInProduct1 = product1AllFeatures.includes(feature) && !isFeatureInProduct1;
                         const isFeatureInheritedInProduct2 = product2AllFeatures.includes(feature) && !isFeatureInProduct2;
-                        
+
                         // Determine visual indicators
                         const isStandardFeature = feature.includes('Standard') || feature.includes('Essential') || product1.type === 'Retail' && product2.type === 'Retail';
                         const isAdvancedFeature = feature.includes('Advanced') || feature.includes('Pro') || feature.includes('Enterprise');
-                        
+
                         return (
-                          <motion.tr 
+                          <motion.tr
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: index * 0.05 }}
-                            key={index} 
+                            key={index}
                             className={`border-b border-stone-100/50 hover:bg-blue-25/30 transition-colors ${index % 2 === 0 ? 'bg-blue-25/20' : 'bg-transparent'} ${isStandardFeature ? 'bg-blue-50/40' : isAdvancedFeature ? 'bg-amber-25/40' : ''}`}
                           >
                             <td className="p-6 font-medium text-stone-700 text-lg py-5">
@@ -409,7 +405,7 @@ const Products: React.FC = () => {
                             <td className="p-6 text-center py-5">
                               {product1AllFeatures.includes(feature) ? (
                                 <div className="relative inline-flex items-center justify-center">
-                                  <motion.div 
+                                  <motion.div
                                     initial={{ scale: 0.8 }}
                                     animate={{ scale: 1 }}
                                     className={`inline-flex items-center justify-center w-12 h-12 rounded-full border-2 ${isFeatureInheritedInProduct1 ? 'bg-gradient-to-br from-blue-100/70 to-blue-200/70 border-blue-300' : 'bg-gradient-to-br from-green-100 to-emerald-100 border-green-200'} text-blue-600`}
@@ -431,7 +427,7 @@ const Products: React.FC = () => {
                             <td className="p-6 text-center py-5">
                               {product2AllFeatures.includes(feature) ? (
                                 <div className="relative inline-flex items-center justify-center">
-                                  <motion.div 
+                                  <motion.div
                                     initial={{ scale: 0.8 }}
                                     animate={{ scale: 1 }}
                                     className={`inline-flex items-center justify-center w-12 h-12 rounded-full border-2 ${isFeatureInheritedInProduct2 ? 'bg-gradient-to-br from-blue-100/70 to-blue-200/70 border-blue-300' : 'bg-gradient-to-br from-green-100 to-emerald-100 border-green-200'} text-blue-600`}
@@ -458,7 +454,7 @@ const Products: React.FC = () => {
                 </table>
               </div>
             </div>
-            
+
             <div className="p-6 bg-stone-50 border-t border-stone-200/50">
               <div className="flex flex-wrap justify-center gap-6">
                 <div className="flex items-center gap-3">
@@ -492,7 +488,7 @@ const Products: React.FC = () => {
         {/* Add-ons Section */}
         {selectedForComparison.length !== 2 && (
           <div className="mt-16 text-center">
-            <a href="/versionlist.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-bold text-sm bg-blue-50 px-6 py-3 rounded-full transition-colors">
+            <a href={`${import.meta.env.BASE_URL}versionlist.pdf`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-bold text-sm bg-blue-50 px-6 py-3 rounded-full transition-colors">
               <Download size={16} /> Download Complete Feature Matrix (PDF)
             </a>
           </div>
