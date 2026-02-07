@@ -395,6 +395,8 @@ const TeamSection: React.FC = () => {
                           alt={member.name}
                           loading="lazy"
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          style={member.id === '24' || member.id === '25' ? { objectPosition: '0% 20%' } : {}}
+
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.src = `https://placehold.co/400x400/e2e8f0/64748b?text=${encodeURIComponent(member.name)}`;
@@ -467,6 +469,13 @@ const TeamSection: React.FC = () => {
                       alt={member.name}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      style={
+                        member.id === '24' || member.id === '25'
+                          ? { objectPosition: '0% 20%' }
+                          : member.id === '15'
+                            ? { objectPosition: '0% 5%' }
+                            : {}
+                      }
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.src = `https://placehold.co/400x400/e2e8f0/64748b?text=${encodeURIComponent(member.name)}`;
