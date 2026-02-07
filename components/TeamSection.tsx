@@ -13,9 +13,7 @@ const getMemberImage = (id: string) => {
     teamImages[`${pathPrefix}.jpeg`] ||
     teamImages[`${pathPrefix}.jpg`] ||
     // Fallbacks for named files
-    (id === '22' ? teamImages['../src/assets/team_images/Kunj.jpeg'] : null) ||
-    (id === '23' ? teamImages['../src/assets/team_images/Harshil.jpeg'] : null) ||
-    (id === '15' ? teamImages['../src/assets/team_images/15.jpeg'] : null);
+    null;
 
   return (imagePath as string) || `https://placehold.co/400x400/e2e8f0/64748b?text=${id}`;
 };
@@ -196,7 +194,7 @@ const TeamSection: React.FC = () => {
       phone: '+91 8200673399'
     },
     {
-      id: '22',
+      id: '24',
       name: 'Kunj Rakholiya',
       role: 'Sales & Support',
       isLeader: false,
@@ -210,6 +208,22 @@ const TeamSection: React.FC = () => {
       isLeader: false,
       isOwner: false,
       phone: '+91 8141151288'
+    },
+    {
+      id: '25',
+      name: 'Ronak Dobariya',
+      role: 'Technical Support',
+      isLeader: false,
+      isOwner: false,
+      phone: '+91 6355239240'
+    },
+    {
+      id: '26',
+      name: 'Ankit Khandel',
+      role: 'Services Support',
+      isLeader: false,
+      isOwner: false,
+      phone: '+91 6355539240'
     }
   ];
 
