@@ -379,6 +379,7 @@ const TeamSection: React.FC = () => {
                         <img
                           src={getMemberImage(member.id)}
                           alt={member.name}
+                          loading="lazy"
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
@@ -450,6 +451,7 @@ const TeamSection: React.FC = () => {
                     <img
                       src={getMemberImage(member.id)}
                       alt={member.name}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
